@@ -1,0 +1,17 @@
+{
+    "name": "owlfancy/extend-user",
+    "type": "userfrosting-sprinkle",
+    "description": "Extend User sprinkle for owlfancy.com.",
+    "license" : "MIT",
+    "authors" : [
+        {
+            "name": "Alexander Weissman",
+            "homepage": "https://alexanderweissman.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "UserFrosting\\Sprinkle\\ExtendUser\\": "src/"
+        }
+    }
+}
