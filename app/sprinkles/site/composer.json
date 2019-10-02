@@ -1,0 +1,17 @@
+{
+    "name": "owlfancy/site",
+    "type": "userfrosting-sprinkle",
+    "description": "Site sprinkle for owlfancy.com.",
+    "license" : "MIT",
+    "authors" : [
+        {
+            "name": "Alexander Weissman",
+            "homepage": "https://alexanderweissman.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "UserFrosting\\Sprinkle\\Site\\": "src/"
+        }
+    }
+}
