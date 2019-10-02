@@ -1,0 +1,10 @@
+{% extends '@admin/navigation/sidebar-menu.html.twig' %}
+
+{% block navigation %}
+
+    {{ parent() }}
+
+    <li>
+        <a href="{{site.uri.public}}/moon"><i class="fa fa-rocket fa-fw"></i> <span>To the moon !</span></a>
+    </li>
+{% endblock %}
