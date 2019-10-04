@@ -1,0 +1,19 @@
+{
+    "bundle": {
+        "css/main": {
+            "styles" : [
+                "css/login-page.css"
+            ],
+            "options": {
+                "result": {
+                    "type": {
+                        "styles": "plain"
+                    }
+                },
+                "sprinkle": {
+                    "onCollision": "merge"
+                }
+            }
+        }
+    }
+}

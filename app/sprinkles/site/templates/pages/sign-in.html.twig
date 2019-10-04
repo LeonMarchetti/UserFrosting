@@ -1,0 +1,11 @@
+{% extends "@account/pages/sign-in.html.twig" %}
+
+{% block loginLogo %}
+    <div class="login-logo">
+        <a href="{{site.uri.public}}">
+            <img src="{{assets.url('assets://userfrosting/images/cupcake.png')}}">
+            <p>{{site.title}}</p>
+        </a>
+    </div>
+    <!-- /.login-logo -->
+{% endblock %}
