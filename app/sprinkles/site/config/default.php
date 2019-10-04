@@ -35,12 +35,12 @@
                     'th_TH' => 'ภาษาไทย',
                     'fa'    => 'فارسی',
                     'el'    => 'Greek',
-    
+
                 ],
                 'default' => 'es_ES',
             ],
         ],
         'php' => [
-            'timezone' => 'Europe/London'
+            'timezone' => 'America/Argentina/Buenos_Aires'
         ]
     ];

@@ -5,6 +5,11 @@ use UserFrosting\Sprinkle\Account\Database\Models\User;
 use UserFrosting\Sprinkle\ExtendUser\Database\Models\MemberAux;
 use UserFrosting\Sprinkle\ExtendUser\Database\Scopes\MemberAuxScope;
 
+/**
+ * Trait used to attach handlers to events for our model. In this case, we use the saved "event"
+ * to tell Laravel to save the related "MemberAux" model any time the "Member" is saved. It will
+ * also call "createAuxIfNotExists" which... well, does exactly what the name says it does.
+ */
 trait LinkMemberAux
 {
     /**
