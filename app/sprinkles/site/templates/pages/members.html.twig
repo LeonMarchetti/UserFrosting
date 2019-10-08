@@ -1,10 +1,11 @@
-{% extends 'pages/abstract/default.html.twig' %}
+{% extends 'pages/abstract/dashboard.html.twig' %}
 
 {# Overrides blocks in head of base template #}
-{% block page_title %}Members{% endblock %}
+{% block page_title %}{{ translate("MEMBERS") }}{% endblock %}
 
-{% block page_description %}The members-only section of OwlFancy.com.{% endblock %}
+{% block page_description %}{{ translate("MEMBERS.PAGE") }}{% endblock %}
 
 {% block body_matter %}
-    Welcome, {{ current_user.first_name }}!
+    {{ translate("MEMBERS.WELCOME") }}, {{ current_user.first_name }}!
 {% endblock %}
+
