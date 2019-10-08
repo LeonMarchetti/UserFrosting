@@ -1,0 +1,37 @@
+{% extends 'pages/abstract/dashboard.html.twig' %}
+
+{# Overrides blocks in head of base template #}
+{% block page_title %}{{translate('PASTRIES')}}{% endblock %}
+{% block page_description %}{{translate('PASTRIES.PAGE')}}{% endblock %}
+
+{% block body_matter %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title"><i class="fa fa-utensils fa-fw"></i> {{translate('PASTRIES.LIST')}}</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>{{translate('PASTRIES.NAME')}}</th>
+                            {% if checkAccess('see_pastry_origin') %}
+                                <th>{{translate('PASTRIES.ORIGIN')}}</th>
+                            {% endif %}
+                            <th>{{translate('PASTRIES.DESCRIPTION')}}</th>
+                        </tr>
+                        {% for pastry in pastries %}
+                            <tr>
+                                <td>{{pastry.name}}</td>
+                                {% if checkAccess('see_pastry_origin') %}
+                                    <td>{{pastry.origin}}</td>
+                                {% endif %}
+                                <td>{{pastry.description}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

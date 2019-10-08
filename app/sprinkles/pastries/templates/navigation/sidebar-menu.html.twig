@@ -1,0 +1,12 @@
+{% extends '@admin/navigation/sidebar-menu.html.twig' %}
+
+{% block navigation %}
+    {{ parent() }}
+    {% if checkAccess('see_pastries') %}
+        <li>
+            <a href="{{ site.uri.public }}/pastries">
+                <i class="fa fa-utensils fa-fw"></i> <span>{{translate('PASTRIES.LIST')}}</span>
+            </a>
+        </li>
+    {% endif %}
+{% endblock %}

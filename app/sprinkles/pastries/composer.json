@@ -1,0 +1,17 @@
+{
+    "name": "owlfancy/pastries",
+    "type": "userfrosting-sprinkle",
+    "description": "Pastries list for UserFrosting.",
+    "license" : "MIT",
+    "authors" : [
+        {
+            "name": "Alexander Weissman",
+            "homepage": "https://alexanderweissman.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "UserFrosting\\Sprinkle\\Pastries\\": "src/"
+        }
+    }
+}
