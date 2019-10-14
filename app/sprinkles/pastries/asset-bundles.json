@@ -1,0 +1,9 @@
+{
+    "bundle": {
+        "js/pages/pastries": {
+            "scripts": [
+                "userfrosting/js/pages/pastries.js"
+            ]
+        }
+    }
+}

@@ -1,0 +1,53 @@
+<form class="js-form" method="{{form.method | default('POST')}}" action="{{site.uri.public}}/{{form.action}}">
+    {% include "forms/csrf.html.twig" %}
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label>Nombre</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
+                    <input type="text" class="form-control" name="pastry_name" autocomplete="off"
+                           value="{{pastry.nombre}}" placeholder="Nombre"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label>Origen</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
+                    <input type="text" class="form-control" name="pastry_origin" autocomplete="off"
+                           value="{{pastry.origen}}" placeholder="Origen"
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>Descripción</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
+                    <input type="text" class="form-control" name="pastry_description" autocomplete="off"
+                           value="{{pastry.descripcion}}" placeholder="Descripción"
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8 col-sm-4">
+            <button type="submit" class="btn btn-block btn-lg btn-success">{{form.submit_text}}</button>
+        </div>
+        <div class="col-xs-4 col-sm-3 pull-right">
+            <button type="button" class="btn btn-block btn-lg btn-link" data-dismiss="modal">Cancelar</button>
+        </div>
+    </div>
+</form>
+
+<!-- Include validation rules -->
+<script>
+    {% include "pages/partials/page.js.twig" %}
+</script>

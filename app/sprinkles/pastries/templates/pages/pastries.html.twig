@@ -31,7 +31,23 @@
                         {% endfor %}
                     </table>
                 </div>
+                <div class="box-footer">
+                    <button type="button" class="btn btn-success agregar-postre">
+                        <i class="fas fa-plus-square"></i>  Agregar Postre
+                    </button>
+                </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts_page %}
+    <!-- Include validation rules -->
+    <script>
+    {% include "pages/partials/page.js.twig" %}
+    </script>
+
+    <!-- Include page-specific JS -->
+    {{ assets.js('js/pages/pastries') | raw }}
+
 {% endblock %}
