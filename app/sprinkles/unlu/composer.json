@@ -1,0 +1,17 @@
+{
+    "name": "owlfancy/unlu",
+    "type": "userfrosting-sprinkle",
+    "description": "UNLu",
+    "license" : "MIT",
+    "authors" : [
+        {
+            "name": "Leonardo Marchetti",
+            "homepage": "https://github.com/LeonMarchetti"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "UserFrosting\\Sprinkle\\Unlu\\": "src/"
+        }
+    }
+}

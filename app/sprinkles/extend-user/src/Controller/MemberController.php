@@ -5,7 +5,6 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use UserFrosting\Sprinkle\Admin\Controller\UserController;
-use UserFrosting\Sprinkle\Core\Facades\Debug;
 use UserFrosting\Support\Exception\ForbiddenException;
 
 class MemberController extends UserController
