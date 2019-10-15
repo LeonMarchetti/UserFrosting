@@ -10,6 +10,10 @@ use UserFrosting\Support\Exception\ForbiddenException;
 use UserFrosting\Sprinkle\Pastries\Database\Models\Pastry;
 use UserFrosting\Sprinkle\Core\Facades\Debug;
 
+use UserFrosting\Fortress\RequestDataTransformer;
+use UserFrosting\Fortress\RequestSchema;
+use Illuminate\Database\Capsule\Manager as Capsule;
+
 class PastriesController extends SimpleController
 {
     public function pageList(Request $request, Response $response, $args)
@@ -46,13 +50,14 @@ class PastriesController extends SimpleController
             throw new ForbiddenException();
         }
 
+        // Datos de prueba, dejar vacío para producción
         $data = [
-            "nombre" => "Postre",
-            "origen" => "Origen",
-            "descripcion" => "Descripción"
+            "name" => "Chocotorta",
+            "origin" => "Argentina",
+            "description" => "Torta de chocolinas con dulce de lecha y crema de queso"
         ];
 
-        return $this->ci->view->render($response, 'modals/pastries.html.twig'. [
+        return $this->ci->view->render($response, 'modals/pastries.html.twig', [
             "pastry" => $data,
             "form" => [
                 "action" => "api/pastries",
@@ -63,8 +68,6 @@ class PastriesController extends SimpleController
     }
 
     public function addPastry(Request $request, Response $response, $args) {
-        Debug::debug("addPastry");
-
         // Get POST parameters: user_name, first_name, last_name, email, locale, (group)
         $params = $request->getParsedBody();
 
@@ -85,7 +88,7 @@ class PastriesController extends SimpleController
         /** @var \UserFrosting\Sprinkle\Core\Alert\AlertStream $ms */
         $ms = $this->ci->alerts;
 
-        $schema = new RequestSchema('schema://requests/pastries/create.yaml');
+        $schema = new RequestSchema('schema://requests/pastries/add.yaml');
 
         // Whitelist and set parameter defaults
         $transformer = new RequestDataTransformer($schema);
@@ -93,11 +96,21 @@ class PastriesController extends SimpleController
 
         $error = false;
 
-        if (!isset($data['pastry_name']) ||
-            !isset($data["pastry_origin"])) {
-
+        if (!isset($data['name'])) {
+            $ms->addMessageTranslated('danger', 'PASTRY.NAME.MISSING', $data);
             $error = true;
         }
+
+        if (!isset($data['origin'])) {
+            $ms->addMessageTranslated('danger', 'PASTRY.ORIGIN.MISSING', $data);
+            $error = true;
+        }
+
+        if ($error) {
+            return $response->withJson([], 400);
+        }
+
+        $classMapper = $this->ci->classMapper;
 
         Capsule::transaction(function () use ($classMapper, $data, $ms, $config, $currentUser) {
             // Create the pastry
@@ -107,10 +120,14 @@ class PastriesController extends SimpleController
             $pastry->save();
 
             // Create activity record
-            $this->ci->userActivityLogger->info("User {$currentUser->user_name} created a new pastry {$data->pastry_name}.", [
+            $this->ci->userActivityLogger->info("User {$currentUser->user_name} created a new pastry {$data->name}.", [
                 'type'    => 'pastry_create',
                 'user_id' => $currentUser->id,
             ]);
+
+            $ms->addMessageTranslated('success', 'PASTRIES.ADDED', $data);
         });
+
+        return $response->withJson([], 200);
     }
 }

@@ -3,10 +3,17 @@
 return [
     "PASTRIES" => [
         "@TRANSLATION" => "Postres",
-        "PAGE" => "Esta página muestra una rica lista de postres",
+        "ADDED" => "Postre agregado",
+        "DESCRIPTION" => "Descripción",
         "LIST" => "Lista de Postres",
-        "NAME" => "Nombre",
-        "ORIGIN" => "Origen",
-        "DESCRIPTION" => "Descripción"
+        "NAME" => [
+            "@TRANSLATION" => "Nombre",
+            "MISSING" => "Falta el nombre"
+        ],
+        "ORIGIN" => [
+            "@TRANSLATION" => "Origen",
+            "MISSING" => "Falta el origen"
+        ],
+        "PAGE" => "Esta página muestra una rica lista de postres"
     ]
 ];

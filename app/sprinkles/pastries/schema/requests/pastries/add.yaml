@@ -1,0 +1,22 @@
+---
+name:
+    validators:
+        length:
+            label: Name
+            min: 1
+            max: 255
+            message: VALIDATE.LENGTH_RANGE
+origin:
+    validators:
+        length:
+            label: Name
+            min: 1
+            max: 255
+            message: VALIDATE.LENGTH_RANGE
+description:
+    validators:
+        length:
+            label: Name
+            min: 1
+            max: 255
+            message: VALIDATE.LENGTH_RANGE

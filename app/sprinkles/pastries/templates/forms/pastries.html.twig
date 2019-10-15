@@ -3,22 +3,22 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                <label>Nombre</label>
+                <label>{{ translate('PASTRIES.NAME') }}</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
-                    <input type="text" class="form-control" name="pastry_name" autocomplete="off"
-                           value="{{pastry.nombre}}" placeholder="Nombre"
+                    <input type="text" class="form-control" name="name" autocomplete="off"
+                           value="{{pastry.name}}" placeholder="{{ translate('PASTRIES.NAME') }}"
                     >
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label>Origen</label>
+                <label>{{ translate('PASTRIES.ORIGIN') }}</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
-                    <input type="text" class="form-control" name="pastry_origin" autocomplete="off"
-                           value="{{pastry.origen}}" placeholder="Origen"
+                    <input type="text" class="form-control" name="origin" autocomplete="off"
+                           value="{{pastry.origin}}" placeholder="{{ translate('PASTRIES.ORIGIN') }}"
                     >
                 </div>
             </div>
@@ -27,11 +27,11 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
-                <label>Descripción</label>
+                <label>{{ translate('PASTRIES.DESCRIPTION') }}</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
-                    <input type="text" class="form-control" name="pastry_description" autocomplete="off"
-                           value="{{pastry.descripcion}}" placeholder="Descripción"
+                    <input type="text" class="form-control" name="description" autocomplete="off"
+                           value="{{pastry.description}}" placeholder="{{ translate('PASTRIES.DESCRIPTION') }}"
                     >
                 </div>
             </div>

@@ -13,5 +13,5 @@ $app->group("/modals/pastries", function () {
 })->add('authGuard');
 
 $app->group("/api/pastries", function () {
-    $this->get('', 'UserFrosting\Sprinkle\Pastries\Controller\PastriesController:addPastry');
+    $this->post('', 'UserFrosting\Sprinkle\Pastries\Controller\PastriesController:addPastry');
 });
