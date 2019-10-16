@@ -1,0 +1,6 @@
+---
+name:
+    validators:
+        required:
+            label: "&NAME"
+            message: VALIDATE.REQUIRED

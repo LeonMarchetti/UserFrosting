@@ -4,6 +4,10 @@ return [
     "PASTRIES" => [
         "@TRANSLATION" => "Postres",
         "ADDED" => "Postre agregado",
+        'DELETE' => "Borrar postre",
+        'DELETE_CONFIRM' => '¿Seguro que deseas eliminar el postre <strong> {{name}} </strong>?',
+        "DELETE_YES" => "Si, borrar postre",
+        "DELETION_SUCCESSFUL" => "El postre {{name}} fue borrado satisfactoriamente.",
         "DESCRIPTION" => "Descripción",
         "LIST" => "Lista de Postres",
         "NAME" => [

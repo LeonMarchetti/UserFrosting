@@ -4,6 +4,10 @@ return [
     "PASTRIES" => [
         "@TRANSLATION" => "Pastries",
         "ADDED" => "Pastry added",
+        'DELETE' => "Delete pastry",
+        'DELETE_CONFIRM' => 'Are you sure you want to delete the pastry <strong> {{name}} </strong>?',
+        "DELETE_YES" => "Yes, delete pastry",
+        "DELETION_SUCCESSFUL" => "The pastry {{name}} was successfully deleted.",
         "DESCRIPTION" => "Description",
         "LIST" => "List of Pastries",
         "NAME" => [
