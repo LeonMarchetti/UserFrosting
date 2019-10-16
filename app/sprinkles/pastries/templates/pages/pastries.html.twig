@@ -20,6 +20,7 @@
                             {% endif %}
                             <th>{{translate('PASTRIES.DESCRIPTION')}}</th>
                             <th>{{ translate("PASTRIES.DELETE") }}</th>
+                            <th>{{ translate("PASTRIES.EDIT") }}</th>
                         </tr>
                         {% for pastry in pastries %}
                             <tr>
@@ -31,6 +32,11 @@
                                 <td>
                                     <button type="button" class="btn btn-error borrar-postre" data-name="{{ pastry.name }}">
                                         <i class="fas fa-minus-square"></i>  {{ translate("DELETE") }}
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-success editar-postre" data-name="{{ pastry.name }}">
+                                        <i class="fas fa-pen-square"></i>  {{ translate("UPDATE") }}
                                     </button>
                                 </td>
                             </tr>

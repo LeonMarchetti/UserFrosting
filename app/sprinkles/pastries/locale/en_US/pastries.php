@@ -9,6 +9,7 @@ return [
         "DELETE_YES" => "Yes, delete pastry",
         "DELETION_SUCCESSFUL" => "The pastry {{name}} was successfully deleted.",
         "DESCRIPTION" => "Description",
+        "EDIT" => "Edit pastry",
         "LIST" => "List of Pastries",
         "NAME" => [
             "@TRANSLATION" => "Name",
@@ -18,6 +19,6 @@ return [
             "@TRANSLATION" => "Origin",
             "MISSING" => "Origin is missing"
         ],
-        "PAGE" => "This page provides a yummy list of pastries"
+        "PAGE" => "This page provides a yummy list of pastries",
     ]
 ];

@@ -96,6 +96,37 @@ class PastriesController extends SimpleController
         ]);
     }
 
+    public function editPastryModal(Request $request, Response $response, $args) {
+
+        // GET parameters
+        $params = $request->getQueryParams();
+
+        $pastry = $this->getPastryFromParams($params);
+
+        /** @var UserFrosting\Sprinkle\Account\Authorize\AuthorizationManager */
+        $authorizer = $this->ci->authorizer;
+
+        /** @var UserFrosting\Sprinkle\Account\Database\Models\User $currentUser */
+        $currentUser = $this->ci->currentUser;
+
+        // Access-controlled page
+        if (!$authorizer->checkAccess($currentUser, 'see_pastries')) {
+            throw new ForbiddenException();
+        }
+
+        /** @var \UserFrosting\Support\Repository\Repository $config */
+        $config = $this->ci->config;
+
+        return $this->ci->view->render($response, 'modals/pastries.html.twig', [
+            'pastry' => $pastry,
+            'form' => [
+                'action' => "api/pastries/u/{$pastry->name}",
+                'method' => "PUT",
+                "submit_text" => "Actualizar"
+            ],
+        ]);
+    }
+
     public function addPastry(Request $request, Response $response, $args) {
         // Get POST parameters: user_name, first_name, last_name, email, locale, (group)
         $params = $request->getParsedBody();
@@ -162,9 +193,6 @@ class PastriesController extends SimpleController
 
     public function deletePastry(Request $request, Response $response, $args) {
 
-        // GET parameters
-        $params = $request->getQueryParams();
-
         $pastry = $this->getPastryFromParams($args);
 
         // If the pastry doesn't exist, return 404
@@ -200,6 +228,81 @@ class PastriesController extends SimpleController
 
         $ms->addMessageTranslated('success', 'PASTRIES.DELETION_SUCCESSFUL', [
             'user_name' => $pastryName,
+        ]);
+
+        return $response->withJson([], 200);
+    }
+
+    public function editPastry(Request $request, Response $response, $args)
+    {
+        // Get the username from the URL
+        $pastry = $this->getPastryFromParams($args);
+
+        if (!$pastry) {
+            throw new NotFoundException();
+        }
+
+        /** @var \UserFrosting\Support\Repository\Repository $config */
+        $config = $this->ci->config;
+
+        // Get PUT parameters
+        $params = $request->getParsedBody();
+
+        /** @var \UserFrosting\Sprinkle\Core\Alert\AlertStream $ms */
+        $ms = $this->ci->alerts;
+
+        // Load the request schema
+        $schema = new RequestSchema('schema://requests/pastries/edit-info.yaml');
+
+        // Whitelist and set parameter defaults
+        $transformer = new RequestDataTransformer($schema);
+        $data = $transformer->transform($params);
+
+        /** @var \UserFrosting\Sprinkle\Account\Authorize\AuthorizationManager $authorizer */
+        $authorizer = $this->ci->authorizer;
+
+        /** @var \UserFrosting\Sprinkle\Account\Database\Models\Interfaces\UserInterface $currentUser */
+        $currentUser = $this->ci->currentUser;
+
+        /** @var \UserFrosting\Sprinkle\Core\Util\ClassMapper $classMapper */
+        $classMapper = $this->ci->classMapper;
+
+        $error = false;
+
+        if (!isset($data['name']) || $data['name'] === "") {
+            $ms->addMessageTranslated('danger', 'PASTRIES.NAME.MISSING', $data);
+            $error = true;
+        }
+
+        if (!isset($data['origin']) || $data['origin'] === "") {
+            $ms->addMessageTranslated('danger', 'PASTRIES.ORIGIN.MISSING', $data);
+            $error = true;
+        }
+
+        if ($error) {
+            return $response->withJson([], 400);
+        }
+
+        // Begin transaction - DB will be rolled back if an exception occurs
+        Capsule::transaction(function () use ($data, $pastry, $currentUser) {
+            // Update the user and generate success messages
+            foreach ($data as $name => $value) {
+                if ($value != $pastry->$name) {
+                    $pastry->$name = $value;
+                }
+            }
+
+            $pastry->save();
+
+            // Create activity record
+            $this->ci->userActivityLogger->info("User {$currentUser->user_name} updated basic account info for pastry {$pastry->name}.", [
+                'type'    => 'account_update_info',
+                'user_id' => $currentUser->id,
+            ]);
+        });
+
+        $ms->addMessageTranslated('success', 'DETAILS_UPDATED', [
+            'user_name' => $pastry->name,
         ]);
 
         return $response->withJson([], 200);

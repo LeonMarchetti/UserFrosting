@@ -9,6 +9,7 @@ return [
         "DELETE_YES" => "Si, borrar postre",
         "DELETION_SUCCESSFUL" => "El postre {{name}} fue borrado satisfactoriamente.",
         "DESCRIPTION" => "Descripción",
+        "EDIT" => "Editar postre",
         "LIST" => "Lista de Postres",
         "NAME" => [
             "@TRANSLATION" => "Nombre",
@@ -18,6 +19,6 @@ return [
             "@TRANSLATION" => "Origen",
             "MISSING" => "Falta el origen"
         ],
-        "PAGE" => "Esta página muestra una rica lista de postres"
+        "PAGE" => "Esta página muestra una rica lista de postres",
     ]
 ];

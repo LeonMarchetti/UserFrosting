@@ -36,4 +36,16 @@ $(".borrar-postre").click(function(e) {
     });
 });
 
+$(".editar-postre").click(function(e) {
+    e.preventDefault();
+
+    $("body").ufModal({
+        sourceUrl: site.uri.public + "/modals/pastries/edit",
+        ajaxParams: {
+            name: $(this).data('name')
+        },
+        msgTarget: $("#alerts-page")
+    });
+});
+
 });
