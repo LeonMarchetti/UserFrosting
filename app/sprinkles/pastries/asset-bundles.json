@@ -4,6 +4,11 @@
             "scripts": [
                 "userfrosting/js/pages/pastries.js"
             ]
+        },
+        "css/pages/pastries": {
+            "styles": [
+                "userfrosting/css/pages/pastries.css"
+            ]
         }
     }
 }

@@ -14,13 +14,12 @@
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
-                            <th>{{translate('PASTRIES.NAME')}}</th>
+                            <th>{{ translate('PASTRIES.NAME') }}</th>
                             {% if checkAccess('see_pastry_origin') %}
-                                <th>{{translate('PASTRIES.ORIGIN')}}</th>
+                                <th>{{ translate('PASTRIES.ORIGIN') }}</th>
                             {% endif %}
-                            <th>{{translate('PASTRIES.DESCRIPTION')}}</th>
-                            <th>{{ translate("PASTRIES.DELETE") }}</th>
-                            <th>{{ translate("PASTRIES.EDIT") }}</th>
+                            <th>{{ translate('PASTRIES.DESCRIPTION') }}</th>
+                            <th>{{ translate("ACTIONS") }}</th>
                         </tr>
                         {% for pastry in pastries %}
                             <tr>
@@ -30,14 +29,16 @@
                                 {% endif %}
                                 <td>{{pastry.description}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-error borrar-postre" data-name="{{ pastry.name }}">
-                                        <i class="fas fa-minus-square"></i>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-success editar-postre" data-name="{{ pastry.name }}">
-                                        <i class="fas fa-pen-square"></i>
-                                    </button>
+                                    <div class="dropdown">
+                                        <button class="dropbtn btn btn-primary">Acciones</button>
+                                        <div class="dropdown-content">
+                                            <a href="#" class="borrar-postre" data-name="{{ pastry.name }}">
+                                                <i class="fas fa-minus-square"></i> Borrar postre
+                                            </a>
+                                            <a href="#" class="editar-postre" data-name="{{ pastry.name }}">
+                                                <i class="fas fa-pen-square"></i> Editar postre
+                                            </a>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -56,10 +57,13 @@
 {% block scripts_page %}
     <!-- Include validation rules -->
     <script>
-    {% include "pages/partials/page.js.twig" %}
+        {% include "pages/partials/page.js.twig" %}
     </script>
 
     <!-- Include page-specific JS -->
     {{ assets.js('js/pages/pastries') | raw }}
+
+    <!-- Include page-specific CSS -->
+    {{ assets.css('css/pages/pastries') | raw }}
 
 {% endblock %}
