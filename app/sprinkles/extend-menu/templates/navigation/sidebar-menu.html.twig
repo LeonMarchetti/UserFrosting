@@ -2,6 +2,11 @@
 
 {% block navigation %}
     {{ parent() }}
+    <li>
+        <a href="{{ site.uri.public }}/account/settings">
+            <i class="fa fa-sliders-h fa-fw"></i> <span>{{ translate("ACCOUNT.MY") }}</span>
+        </a>
+    </li>
     {% if checkAccess('see_pastries') %}
         <li>
             <a href="{{ site.uri.public }}/pastries">
