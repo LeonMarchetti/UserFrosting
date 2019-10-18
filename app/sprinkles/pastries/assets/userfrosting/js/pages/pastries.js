@@ -1,8 +1,3 @@
-
-function reloadOnFormSuccess() {
-
-}
-
 $(document).ready(function() {
 
 // Recargar página cuando el modal termina exitosamente
@@ -15,6 +10,7 @@ $("body").on('renderSuccess.ufModal', function() {
     });
 });
 
+// Modal para agregar un postre
 $(".agregar-postre").click(function(e) {
     e.preventDefault();
 
@@ -24,6 +20,7 @@ $(".agregar-postre").click(function(e) {
     });
 });
 
+// Modal para borrar un postre
 $(".borrar-postre").click(function(e) {
     e.preventDefault();
 
@@ -36,6 +33,7 @@ $(".borrar-postre").click(function(e) {
     });
 });
 
+// Modal para editar un postre
 $(".editar-postre").click(function(e) {
     e.preventDefault();
 

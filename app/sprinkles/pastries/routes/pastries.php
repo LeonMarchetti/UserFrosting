@@ -9,9 +9,9 @@ $app->group('/pastries', function () {
 })->add('authGuard');
 
 $app->group("/modals/pastries", function () {
-    $this->get('/add', 'UserFrosting\Sprinkle\Pastries\Controller\PastriesController:addPastryModal');
-    $this->get('/delete', 'UserFrosting\Sprinkle\Pastries\Controller\PastriesController:deletePastryModal');
-    $this->get('/edit', 'UserFrosting\Sprinkle\Pastries\Controller\PastriesController:editPastryModal');
+    $this->get('/add', 'UserFrosting\Sprinkle\Pastries\Controller\PastriesModalController:addPastryModal');
+    $this->get('/delete', 'UserFrosting\Sprinkle\Pastries\Controller\PastriesModalController:deletePastryModal');
+    $this->get('/edit', 'UserFrosting\Sprinkle\Pastries\Controller\PastriesModalController:editPastryModal');
 })->add('authGuard');
 
 $app->group("/api/pastries", function () {
