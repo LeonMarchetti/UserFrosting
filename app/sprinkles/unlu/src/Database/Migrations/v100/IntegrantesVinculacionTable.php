@@ -8,6 +8,9 @@ use UserFrosting\Sprinkle\Core\Facades\Seeder;
 
 class IntegrantesVinculacionTable extends Migration
 {
+    /**
+     * {@inheritDoc}
+     */
     public static $dependencies = [
         '\UserFrosting\Sprinkle\Unlu\Database\Migrations\v100\VinculacionTable'
     ];
