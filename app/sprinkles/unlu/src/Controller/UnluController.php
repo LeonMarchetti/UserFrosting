@@ -44,22 +44,4 @@ class UnluController extends SimpleController
             'peticiones' => $peticiones,
         ]);
     }
-
-    public function solicitar_vinculacion(Request $request, Response $response, $args) {
-        return $this->ci->view->render($response, 'pages/solicitar-vinculacion.html.twig', [
-
-        ]);
-    }
-
-    public function solicitar_servicio(Request $request, Response $response, $args) {
-        return $this->ci->view->render($response, 'pages/solicitar-servicio.html.twig', [
-
-        ]);
-    }
-
-    public function baja_solicitud(Request $request, Response $response, $args) {
-        return $this->ci->view->render($response, 'pages/baja-solicitud.html.twig', [
-
-        ]);
-    }
 }

@@ -7,7 +7,7 @@
 {% block body_matter %}
     <div class="row">
         <div class="col-sm-4">
-            <a href="{{ site.uri.public }}/solicitar-vinculacion">
+            <a href="#" class="solicitar-vinculacion">
                 <div class="info-box">
                     <span class="info-box-icon bg-red"><i class="fas fa-file-contract fa-fw"></i></span>
                     <div class="info-box-content">
@@ -17,7 +17,7 @@
             </a>
         </div>
         <div class="col-sm-4">
-            <a href="{{ site.uri.public }}/solicitar-servicio">
+            <a href="#" class="solicitar-servicio">
                 <div class="info-box">
                     <span class="info-box-icon bg-green"><i class="fas fa-plus-circle fa-fw"></i></span>
                     <div class="info-box-content">
@@ -27,7 +27,7 @@
             </a>
         </div>
         <div class="col-sm-4">
-            <a href="{{ site.uri.public }}/baja-solicitud">
+            <a href="#" class="baja-solicitud">
                 <div class="info-box">
                     <span class="info-box-icon bg-blue"><i class="fas fa-minus-circle fa-fw"></i></span>
                     <div class="info-box-content">
@@ -93,4 +93,15 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts_page %}
+    <!-- Include validation rules -->
+    <script>
+        {% include "pages/partials/page.js.twig" %}
+    </script>
+
+    <!-- Include page-specific JS -->
+    {{ assets.js('js/pages/unlu') | raw }}
+
 {% endblock %}

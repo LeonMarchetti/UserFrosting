@@ -1,0 +1,14 @@
+{
+    "bundle": {
+        "js/pages/unlu": {
+            "scripts": [
+                "userfrosting/js/pages/unlu.js"
+            ]
+        },
+        "css/pages/unlu": {
+            "styles": [
+                "userfrosting/css/pages/unlu.css"
+            ]
+        }
+    }
+}
