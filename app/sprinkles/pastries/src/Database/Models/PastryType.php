@@ -15,4 +15,13 @@ class PastryType extends Model
     protected $fillable = [
         'description',
     ];
+
+    public function pastries() {
+
+        /** @var \UserFrosting\Sprinkle\Core\Util\ClassMapper $classMapper */
+        $classMapper = static::$ci->classMapper;
+
+        return $this->hasMany($classMapper->getClassMapping('pastry'), id);
+        // return $this->hasMany("UserFrosting\Sprinkle\Pastries\Database\Models\Pastry");
+    }
 }

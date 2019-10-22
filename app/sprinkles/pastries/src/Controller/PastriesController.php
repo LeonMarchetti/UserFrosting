@@ -8,6 +8,7 @@ use Slim\Exception\NotFoundException;
 use UserFrosting\Sprinkle\Core\Controller\SimpleController;
 use UserFrosting\Support\Exception\ForbiddenException;
 use UserFrosting\Sprinkle\Pastries\Database\Models\Pastry;
+use UserFrosting\Sprinkle\Pastries\Database\Models\PastryType;
 use UserFrosting\Sprinkle\Core\Facades\Debug;
 
 use UserFrosting\Fortress\RequestDataTransformer;

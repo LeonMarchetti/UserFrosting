@@ -20,6 +20,7 @@ class ServicesProvider
          */
         $container->extend('classMapper', function ($classMapper, $c) {
             $classMapper->setClassMapping('pastry', 'UserFrosting\Sprinkle\Pastries\Database\Models\Pastry');
+            $classMapper->setClassMapping("pastry_type", "UserFrosting\Sprinkle\Pastries\Database\Models\PastryType");
             return $classMapper;
         });
     }

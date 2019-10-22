@@ -18,6 +18,15 @@ class Pastry extends Model
         'origin'
     ];
 
+    public function type_2() {
+
+        /** @var \UserFrosting\Sprinkle\Core\Util\ClassMapper $classMapper */
+        $classMapper = static::$ci->classMapper;
+
+        return $this->belongsTo($classMapper->getClassMapping("pastry_type"));
+        // return $this->belongsTo("UserFrosting\Sprinkle\Pastries\Database\Models\PastryType");
+    }
+
     /**
      * @var bool Enable timestamps for this class.
      */

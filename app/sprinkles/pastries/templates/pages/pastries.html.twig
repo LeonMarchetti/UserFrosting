@@ -18,6 +18,7 @@
                             {% if checkAccess('see_pastry_origin') %}
                                 <th>{{ translate('PASTRIES.ORIGIN') }}</th>
                             {% endif %}
+                            <th>Tipo</th>
                             <th>{{ translate('PASTRIES.DESCRIPTION') }}</th>
                             <th>{{ translate("ACTIONS") }}</th>
                         </tr>
@@ -25,9 +26,10 @@
                             <tr>
                                 <td>{{pastry.name}}</td>
                                 {% if checkAccess('see_pastry_origin') %}
-                                    <td>{{pastry.origin}}</td>
+                                    <td>{{ pastry.origin }}</td>
                                 {% endif %}
-                                <td>{{pastry.description}}</td>
+                                <td>{{ pastry.type }}</td>
+                                <td>{{ pastry.description }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="dropbtn btn btn-primary">Acciones</button>
