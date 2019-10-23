@@ -30,9 +30,19 @@ class PastriesController extends SimpleController
             throw new ForbiddenException();
         }
 
-        $pastries = Pastry::all();
+        // $tipo = Pastry::find(1)->type;
+        // $tipo = PastryType::find($tipo)->description;
+        // Debug::debug("Tipo: $tipo"); // Tipo: Pastry
 
-        // Debug::debug($pastries);
+        // $tipos = PastryType::has("pastries")->get(); // Trae los tipos de postres con por lo menos 1 postre
+        // $tipos = PastryType::with("pastries")->get(); // A cada tipo de postre trae tambien los postres asociados
+        // Debug::debug("Tipos $tipos");
+
+        // Código para poder relacionar cada postre con su nombre de tipo (o descripción):
+        $pastries = Pastry::with("type")->get();
+        foreach ($pastries as $pastry) {
+            $pastry->type = PastryType::find($pastry->type)->description;
+        }
 
         return $this->ci->view->render($response, 'pages/pastries.html.twig', [
             'pastries' => $pastries

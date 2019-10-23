@@ -29,9 +29,9 @@ class PastriesModalController extends SimpleController
 
         // Datos de prueba, dejar vacío para producción
         $data = [
-            "name" => "Chocotorta",
-            "origin" => "Argentina",
-            "description" => "Torta de galletitas de chocolate con dulce de leche y crema de queso"
+            "name" => "",
+            "origin" => "",
+            "description" => ""
         ];
 
         return $this->ci->view->render($response, 'modals/pastries.html.twig', [

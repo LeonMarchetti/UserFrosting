@@ -20,5 +20,6 @@ return [
             "MISSING" => "Origin is missing"
         ],
         "PAGE" => "This page provides a yummy list of pastries",
+        "TYPE" => "Type",
     ]
 ];

@@ -21,7 +21,8 @@ class PastryType extends Model
         /** @var \UserFrosting\Sprinkle\Core\Util\ClassMapper $classMapper */
         $classMapper = static::$ci->classMapper;
 
-        return $this->hasMany($classMapper->getClassMapping('pastry'), id);
+        // $this->hasMany('App\Comment', 'foreign_key', 'local_key');
+        return $this->hasMany($classMapper->getClassMapping('pastry'), "type", "id");
         // return $this->hasMany("UserFrosting\Sprinkle\Pastries\Database\Models\Pastry");
     }
 }
