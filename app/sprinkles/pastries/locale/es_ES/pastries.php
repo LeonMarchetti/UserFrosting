@@ -20,6 +20,10 @@ return [
             "MISSING" => "Falta el origen"
         ],
         "PAGE" => "Esta página muestra una rica lista de postres",
-        "TYPE" => "Tipo",
+        "TYPE" => [
+            "@TRANSLATION" => "Tipo",
+            "MISSING" => "Falta el tipo"
+        ],
+        "UPDATE_SUCCESSFUL" => "El postre {{ name }}, fue actualizado satisfactioramente.",
     ]
 ];

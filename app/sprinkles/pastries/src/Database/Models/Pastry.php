@@ -15,7 +15,8 @@ class Pastry extends Model
     protected $fillable = [
         'name',
         'description',
-        'origin'
+        'origin',
+        'type'
     ];
 
     public function type() {

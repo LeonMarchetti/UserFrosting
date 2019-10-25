@@ -7,6 +7,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use UserFrosting\Sprinkle\Core\Controller\SimpleController;
 use UserFrosting\Support\Exception\ForbiddenException;
 use UserFrosting\Sprinkle\Pastries\Database\Models\Pastry;
+use UserFrosting\Sprinkle\Pastries\Database\Models\PastryType;
 use UserFrosting\Sprinkle\Core\Facades\Debug;
 
 use UserFrosting\Fortress\RequestDataTransformer;
@@ -34,8 +35,11 @@ class PastriesModalController extends SimpleController
             "description" => ""
         ];
 
+        $tipos = PastryType::all();
+
         return $this->ci->view->render($response, 'modals/pastries.html.twig', [
             "pastry" => $data,
+            "types" => $tipos,
             "form" => [
                 "action" => "api/pastries",
                 "method" => "POST",
@@ -94,8 +98,11 @@ class PastriesModalController extends SimpleController
         /** @var \UserFrosting\Support\Repository\Repository $config */
         $config = $this->ci->config;
 
+        $tipos = PastryType::all();
+
         return $this->ci->view->render($response, 'modals/pastries.html.twig', [
             'pastry' => $pastry,
+            'types' => $tipos,
             'form' => [
                 'action' => "api/pastries/u/{$pastry->name}",
                 'method' => "PUT",

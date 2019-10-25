@@ -88,6 +88,11 @@ class PastriesController extends SimpleController
             $error = true;
         }
 
+        if (!isset($data['type'])) {
+            $ms->addMessageTranslated('danger', 'PASTRIES.TYPE.MISSING', $data);
+            $error = true;
+        }
+
         if ($error) {
             return $response->withJson([], 400);
         }
@@ -155,8 +160,7 @@ class PastriesController extends SimpleController
         return $response->withJson([], 200);
     }
 
-    public function editPastry(Request $request, Response $response, $args)
-    {
+    public function editPastry(Request $request, Response $response, $args) {
         // Get the username from the URL
         $pastry = $this->getPastryFromParams($args);
 
@@ -201,6 +205,11 @@ class PastriesController extends SimpleController
             $error = true;
         }
 
+        if (!isset($data['type'])) {
+            $ms->addMessageTranslated('danger', 'PASTRIES.TYPE.MISSING', $data);
+            $error = true;
+        }
+
         if ($error) {
             return $response->withJson([], 400);
         }
@@ -217,13 +226,13 @@ class PastriesController extends SimpleController
             $pastry->save();
 
             // Create activity record
-            $this->ci->userActivityLogger->info("User {$currentUser->user_name} updated basic account info for pastry {$pastry->name}.", [
+            $this->ci->userActivityLogger->info("User {$currentUser->user_name} updated info for pastry {$pastry->name}.", [
                 'type'    => 'account_update_info',
                 'user_id' => $currentUser->id,
             ]);
         });
 
-        $ms->addMessageTranslated('success', 'DETAILS_UPDATED', [
+        $ms->addMessageTranslated('success', 'PASTRIES.UPDATE_SUCCESSFUL', [
             'user_name' => $pastry->name,
         ]);
 

@@ -13,6 +13,11 @@ origin:
             min: 1
             max: 255
             message: VALIDATE.LENGTH_RANGE
+type:
+    validators:
+        integer:
+            label: Type
+            message: VALIDATE.INTEGER
 description:
     validators:
         length:
