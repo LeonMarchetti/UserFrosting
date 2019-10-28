@@ -29,7 +29,7 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
 
-                    <select class="form-control" name="type">
+                    <select class="form-control js-select2" name="type">
                         {% for type in types %}
                         <option value="{{ type.id }}" {% if type.id == pastry.type %} selected="selected" {% endif %}>{{ type.description }}</option>
                         {% endfor %}

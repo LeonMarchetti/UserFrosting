@@ -24,24 +24,13 @@
     </div>
     <div class="row">
         <div class="col-sm-6">
-            {# <div class="form-group">
-                <label>Tipo de Usuario</label>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
-                    <input type="text" class="form-control" name="tipo_de_usuario" autocomplete="off"
-                           value="{{ vinc.tipo_de_usuario }}" placeholder="Tipo de usuario">
-                </div>
-            </div> #}
             <div class="form-group">
                 <label for="input-tipo" class="control-label">Tipo de Usuario</label>
-                <select id="input-tipo" class="form-control js-select2" name="tipo_de_usuario" {{page.visibility}}>
-                    {% for option, label in tipos_de_usuario %}
-                        {% if label is not empty %}
-                            <option value="{{option}}" {% if (option == vinc.tipo_de_usuario) %}selected{% endif %}>{{label}}</option>
-                        {% endif %}
+                <select id="input-tipo" class="form-control js-select2" name="tipo_de_usuario" {{ page.visibility }}>
+                    {% for tipo in tipos_de_usuario %}
+                    <option value="{{ tipo.id }}" {% if tipo.id == vinc.tipo_de_usuario %}selected="selected"{% endif %}>{{ tipo.description }}</option>
                     {% endfor %}
                 </select>
-                <p class="help-block">{{translate("LOCALE.ACCOUNT")}}.</p>
             </div>
         </div>
         <div class="col-sm-6">
@@ -95,15 +84,15 @@
                 <label>Descripción</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
-                    <input type="text" class="form-control" name="descripction" autocomplete="off"
-                           value="{{ vinc.descripcion}}" placeholder="Descripción">
+                    <input type="text" class="form-control" name="description" autocomplete="off"
+                           value="{{ vinc.descripcion }}" placeholder="Descripción">
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-8 col-sm-4">
-            <button type="submit" class="btn btn-block btn-lg btn-success">{{form.submit_text}}</button>
+            <button type="submit" class="btn btn-block btn-lg btn-success">{{ form.submit_text }}</button>
         </div>
         <div class="col-xs-4 col-sm-3 pull-right">
             <button type="button" class="btn btn-block btn-lg btn-link" data-dismiss="modal">Cancelar</button>
