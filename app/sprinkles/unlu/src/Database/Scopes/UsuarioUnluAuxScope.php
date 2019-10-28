@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-class UsuarioUnluAuxScope implements Scope
-{
+class UsuarioUnluAuxScope implements Scope {
     /**
      * Apply the scope to a given Eloquent query builder.
      *
@@ -15,11 +14,11 @@ class UsuarioUnluAuxScope implements Scope
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return void
      */
-    public function apply(Builder $builder, Model $model)
-    {
+    public function apply(Builder $builder, Model $model) {
+
         $baseTable = $model->getTable();
         // Hardcode the table name here, or you can access it using the classMapper and `getTable`
-        $auxTable = 'members';
+        $auxTable = 'usuario_unlu';
 
         // Specify columns to load from base table and aux table
         $builder->addSelect(

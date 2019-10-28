@@ -10,8 +10,7 @@ use UserFrosting\Sprinkle\Unlu\Database\Scopes\UsuarioUnluAuxScope;
  * to tell Laravel to save the related "UsuarioUnluAux" model any time the "UsuarioUnlu" is saved. It will
  * also call "createAuxIfNotExists" which... well, does exactly what the name says it does.
  */
-trait LinkUsuarioUnluAux
-{
+trait LinkUsuarioUnluAux {
     /**
      * The "booting" method of the trait.
      *
@@ -37,8 +36,7 @@ trait LinkUsuarioUnluAux
     }
 }
 
-class Member extends User
-{
+class UsuarioUnlu extends User {
     use LinkUsuarioUnluAux;
 
     protected $fillable = [
@@ -62,14 +60,13 @@ class Member extends User
         'activo'
     ];
 
-    protected $auxType = 'UserFrosting\Sprinkle\ExtendUser\Database\Models\UsuarioUnluAux';
+    protected $auxType = 'UserFrosting\Sprinkle\Unlu\Database\Models\UsuarioUnluAux';
 
     /**
      * Required to be able to access the `aux` relationship in Twig without needing to do eager loading.
      * @see http://stackoverflow.com/questions/29514081/cannot-access-eloquent-attributes-on-twig/35908957#35908957
      */
-    public function __isset($name)
-    {
+    public function __isset($name) {
         if (in_array($name, [
             'aux'
         ])) {
@@ -82,8 +79,7 @@ class Member extends User
     /**
      * Globally joins the `usuario_unlu` table to access additional properties.
      */
-    protected static function boot()
-    {
+    protected static function boot() {
         parent::boot();
 
         static::addGlobalScope(new UsuarioUnluAuxScope);
