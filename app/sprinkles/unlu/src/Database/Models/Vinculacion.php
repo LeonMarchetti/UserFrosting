@@ -12,6 +12,7 @@ class Vinculacion extends Model {
     protected $table = 'vinculacion';
 
     protected $fillable = [
+        'id_solicitante',
         'fecha_solicitud',
         'fecha_fin',
         'responsable',

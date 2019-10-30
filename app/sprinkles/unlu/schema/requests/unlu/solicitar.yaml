@@ -1,0 +1,51 @@
+---
+responsable:
+    validators:
+        length:
+            label: Responsable
+            min: 1
+            max: 255
+            message: VALIDATE.LENGTH_RANGE
+cargo:
+    validators:
+        length:
+            label: Cargo
+            min: 1
+            max: 255
+            message: VALIDATE.LENGTH_RANGE
+tipo_de_usuario:
+    validators:
+        integer:
+            label: TipoDeUsuario
+            message: VALIDATE.INTEGER
+actividad:
+    validators:
+        length:
+            label: Actividad
+            min: 1
+            max: 255
+            message: VALIDATE.LENGTH_RANGE
+telefono:
+    validators:
+        length:
+            label: Telefono
+            min: 1
+            max: 255
+            message: VALIDATE.LENGTH_RANGE
+correo:
+    validators:
+        email:
+            label: Correo
+            message: "Dirección de correo inválido"
+fecha_fin:
+    validators:
+        email:
+            label: FechaFin
+            message: "Fecha inválida"
+descripcion:
+    validators:
+        length:
+            label: Descripcion
+            min: 1
+            max: 255
+            message: VALIDATE.LENGTH_RANGE

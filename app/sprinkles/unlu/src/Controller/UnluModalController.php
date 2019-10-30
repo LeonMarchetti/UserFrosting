@@ -29,9 +29,19 @@ class UnluModalController extends SimpleController {
         //     throw new ForbiddenException();
         // }
 
+        // Valores por defecto de la vinculación que provienen de los datos del usuario actual.
+        $vinculacion = [
+            "responsable" => $currentUser->full_name,
+            "cargo" => $currentUser->rol,
+            "correo" => $currentUser->email,
+            "telefono" => $currentUser->telefono,
+        ];
+
+        // Lista de tipos de usuario
         $tipos_de_usuario = TipoUsuario::all();
 
         return $this->ci->view->render($response, 'modals/vinculacion.html.twig', [
+            "vinc" => $vinculacion,
             "tipos_de_usuario" => $tipos_de_usuario,
             "form" => [
                 "action" => "api/unlu",

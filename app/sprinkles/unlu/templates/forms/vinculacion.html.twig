@@ -3,21 +3,21 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                <label>Responsable</label>
+                <label>{{ translate("UNLU.RESPONSABLE") }}</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
                     <input type="text" class="form-control" name="responsable" autocomplete="off"
-                           value="{{ vinc.responsable }}" placeholder="Responsable">
+                           value="{{ vinc.responsable }}" placeholder="{{ translate("UNLU.RESPONSABLE") }}">
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label>Cargo</label>
+                <label>{{ translate("UNLU.POSITION") }}</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
                     <input type="text" class="form-control" name="cargo" autocomplete="off"
-                           value="{{ vinc.cargo }}" placeholder="Cargo">
+                           value="{{ vinc.cargo }}" placeholder="{{ translate("UNLU.POSITION") }}">
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                <label for="input-tipo" class="control-label">Tipo de Usuario</label>
+                <label>{{ translate("UNLU.TYPE") }}</label>
                 <select id="input-tipo" class="form-control js-select2" name="tipo_de_usuario" {{ page.visibility }}>
                     {% for tipo in tipos_de_usuario %}
                     <option value="{{ tipo.id }}" {% if tipo.id == vinc.tipo_de_usuario %}selected="selected"{% endif %}>{{ tipo.description }}</option>
@@ -35,11 +35,11 @@
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label>Actividad</label>
+                <label>{{ translate("UNLU.ACTIVITY") }}</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
                     <input type="text" class="form-control" name="actividad" autocomplete="off"
-                           value="{{ vinc.actividad }}" placeholder="Actividad">
+                           value="{{ vinc.actividad }}" placeholder="{{ translate("UNLU.ACTIVITY") }}">
                 </div>
             </div>
         </div>
@@ -47,21 +47,21 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                <label>Teléfono</label>
+                <label>{{ translate("UNLU.PHONE") }}</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
                     <input type="text" class="form-control" name="telefono" autocomplete="off"
-                           value="{{ vinc.telefono }}" placeholder="Teléfono">
+                           value="{{ vinc.telefono }}" placeholder="{{ translate("UNLU.PHONE") }}">
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label>Correo</label>
+                <label>{{ translate("UNLU.EMAIL") }}</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
                     <input type="text" class="form-control" name="correo" autocomplete="off"
-                           value="{{ vinc.correo }}" placeholder="Correo">
+                           value="{{ vinc.correo }}" placeholder="{{ translate("UNLU.EMAIL") }}">
                 </div>
             </div>
         </div>
@@ -69,11 +69,11 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                <label>Fecha de Finalización</label>
+                <label>{{ translate("UNLU.END_DATE") }}</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
-                    <input type="text" class="form-control" name="fecha-fin" autocomplete="off"
-                           value="{{ vinc.fecha_fin }}" placeholder="Fecha de Finalización">
+                    <input type="date" class="form-control" name="fecha_fin" autocomplete="off"
+                           value="{{ vinc.fecha_fin }}">
                 </div>
             </div>
         </div>
@@ -81,11 +81,11 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
-                <label>Descripción</label>
+                <label>{{ translate("UNLU.DESCRIPTION") }}</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
-                    <input type="text" class="form-control" name="description" autocomplete="off"
-                           value="{{ vinc.descripcion }}" placeholder="Descripción">
+                    <input type="text" class="form-control" name="descripcion" autocomplete="off"
+                           value="{{ vinc.descripcion }}" placeholder="{{ translate("UNLU.DESCRIPTION") }}">
                 </div>
             </div>
         </div>
