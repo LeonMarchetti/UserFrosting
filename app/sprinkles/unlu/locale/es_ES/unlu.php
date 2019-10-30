@@ -27,7 +27,10 @@ return [
             "@TRANSLATION" => "Rol",
             "MISSING" => "Falta asignar el rol en el perfil de usuario"
         ],
-        "TYPE" => "Tipo de usuario",
+        "TYPE" => [
+            "@TRANSLATION" => "Tipo de usuario",
+            "MISSING" => "Falta el tipo de usuario"
+        ],
         "VINCULATION" => [
             "@TRANSLATION" => "Vinculación",
             "ADDED" => "Vinculación solicitada"

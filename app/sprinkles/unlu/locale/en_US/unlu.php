@@ -27,7 +27,10 @@ return [
             "@TRANSLATION" => "Role",
             "MISSING" => "Role is not assigned in user profile"
         ],
-        "TYPE" => "User type",
+        "TYPE" => [
+            "@TRANSLATION" => "User type",
+            "MISSING" => "User type is missing"
+        ],
         "VINCULATION" => [
             "@TRANSLATION" => "Vinculation",
             "ADDED" => "Vinculation requested"

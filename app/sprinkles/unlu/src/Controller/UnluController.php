@@ -96,6 +96,11 @@ class UnluController extends SimpleController {
             }
         }
 
+        if (!isset($data['tipo_de_usuario']) || $data['tipo_de_usuario'] === "") {
+            $ms->addMessageTranslated('danger', 'UNLU.TYPE.MISSING', $data);
+            $error = true;
+        }
+
         if (!isset($data['actividad']) || $data['actividad'] === "") {
             $ms->addMessageTranslated('danger', 'UNLU.ACTIVITY.MISSING', $data);
             $error = true;

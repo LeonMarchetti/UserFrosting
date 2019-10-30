@@ -29,6 +29,7 @@
             <div class="form-group">
                 <label>{{ translate("UNLU.TYPE") }}</label>
                 <select id="input-tipo" class="form-control js-select2" name="tipo_de_usuario" {{ page.visibility }}>
+                    <option value="">{{ translate("UNLU.TYPE") }}</option>
                     {% for tipo in tipos_de_usuario %}
                     <option value="{{ tipo.id }}" {% if tipo.id == vinc.tipo_de_usuario %}selected="selected"{% endif %}>{{ tipo.description }}</option>
                     {% endfor %}
