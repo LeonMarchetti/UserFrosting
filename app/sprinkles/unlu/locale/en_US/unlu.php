@@ -14,6 +14,7 @@ return [
         "EMAIL" => "E-mail",
         "END_DATE" => [
             "@TRANSLATION" => "End date",
+            "BEFORE" => "End date can't be before than request date",
             "MISSING" => "End date is missing"
         ],
         "PHONE" => [

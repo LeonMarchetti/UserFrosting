@@ -37,6 +37,11 @@ class UnluModalController extends SimpleController {
             "telefono" => $currentUser->telefono,
         ];
 
+        // Valores de prueba para solicitar vinculación, comentar para producción:
+        // $vinculacion["actividad"] = "Antes";
+        // $vinculacion["fecha_fin"] = "2019-01-01";
+        // $vinculacion["descripcion"] = "Fecha fin antes que la fecha actual";
+
         // Lista de tipos de usuario
         $tipos_de_usuario = TipoUsuario::all();
 

@@ -14,6 +14,7 @@ return [
         "EMAIL" => "Correo electrónico",
         "END_DATE" => [
             "@TRANSLATION" => "Fecha de finalización",
+            "BEFORE" => "La fecha de finalización no puede ser anterior a la fecha de solicitud",
             "MISSING" => "Falta la fecha de finalización"
         ],
         "PHONE" => [

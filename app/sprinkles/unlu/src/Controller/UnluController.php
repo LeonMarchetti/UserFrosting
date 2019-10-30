@@ -79,7 +79,7 @@ class UnluController extends SimpleController {
         $data["id_solicitante"] = $currentUser->id;
 
         // Asigno la fecha actual como fecha de solicitud de la vinculación
-        $data["fecha_solicitud"] = date("d/m/Y", time());
+        $data["fecha_solicitud"] = date("d-m-Y", time());
 
         if (!isset($data["responsable"]) || $data["responsable"] === "") {
             $data["responsable"] = $currentUser->full_name;
@@ -114,6 +114,13 @@ class UnluController extends SimpleController {
         if (!isset($data['fecha_fin']) || $data['fecha_fin'] === "") {
             $ms->addMessageTranslated('danger', 'UNLU.END_DATE.MISSING', $data);
             $error = true;
+
+        } else {
+            // Comprobar que la fecha de finalización no sea anterior a la fecha de solicitud:
+            if (strtotime($data["fecha_fin"]) < strtotime($data["fecha_solicitud"])) {
+                $ms->addMessageTranslated('danger', 'UNLU.END_DATE.BEFORE', $data);
+                $error = true;
+            }
         }
 
         if (!isset($data['descripcion']) || $data['descripcion'] === "") {
