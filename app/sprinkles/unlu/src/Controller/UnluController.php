@@ -67,7 +67,7 @@ class UnluController extends SimpleController {
         /** @var \UserFrosting\Sprinkle\Core\Alert\AlertStream $ms */
         $ms = $this->ci->alerts;
 
-        $schema = new RequestSchema('schema://requests/unlu/solicitar.yaml');
+        $schema = new RequestSchema('schema://requests/unlu/solicitar_vinculacion.yaml');
 
         // Whitelist and set parameter defaults
         $transformer = new RequestDataTransformer($schema);
@@ -151,6 +151,103 @@ class UnluController extends SimpleController {
             ]);
 
             $ms->addMessageTranslated('success', 'UNLU.VINCULATION.ADDED', $data);
+        });
+
+        return $response->withJson([], 200);
+    }
+
+    public function solicitarServicio(Request $request, Response $response, $args) {
+        // Get POST parameters: user_name, first_name, last_name, email, locale, (group)
+        $params = $request->getParsedBody();
+
+        /** @var \UserFrosting\Sprinkle\Account\Authorize\AuthorizationManager $authorizer */
+        $authorizer = $this->ci->authorizer;
+
+        /** @var \UserFrosting\Sprinkle\Account\Database\Models\Interfaces\UserInterface $currentUser */
+        $currentUser = $this->ci->currentUser;
+
+        /** @var \UserFrosting\Support\Repository\Repository $config */
+        $config = $this->ci->config;
+
+        // Access-controlled page
+        // if (!$authorizer->checkAccess($currentUser, 'create_pastries')) {
+        //     throw new ForbiddenException();
+        // }
+
+        /** @var \UserFrosting\Sprinkle\Core\Alert\AlertStream $ms */
+        $ms = $this->ci->alerts;
+
+        $schema = new RequestSchema('schema://requests/unlu/solicitar_servicio.yaml');
+
+        // Whitelist and set parameter defaults
+        $transformer = new RequestDataTransformer($schema);
+        $data = $transformer->transform($params);
+
+        $error = false;
+
+        // Asigno el id del usuario actual como id del solicitante de la petición
+        $data["id_usuario"] = $currentUser->id;
+
+        if (!isset($data['fecha_inicio']) || $data['fecha_inicio'] === "") {
+            $ms->addMessageTranslated('warning', 'UNLU.PETITION.START_DATE.MISSING', $data);
+            $error = true;
+
+        } else {
+            // Comprobar que la fecha de inicio no sea anterior a la fecha actual:
+            $fecha_hoy = strtotime(date("d-m-Y", time()));
+            if (strtotime($data["fecha_inicio"]) < $fecha_hoy) {
+                $ms->addMessageTranslated('warning', 'UNLU.PETITION.START_DATE.BEFORE', $data);
+                $error = true;
+            }
+        }
+
+        if (!isset($data['fecha_fin']) || $data['fecha_fin'] === "") {
+            $ms->addMessageTranslated('warning', 'UNLU.PETITION.END_DATE.MISSING', $data);
+            $error = true;
+
+        } else {
+            // Comprobar que la fecha de finalización no sea anterior a la fecha de solicitud:
+            if (strtotime($data["fecha_fin"]) < strtotime($data["fecha_inicio"])) {
+                $ms->addMessageTranslated('warning', 'UNLU.PETITION.END_DATE.BEFORE', $data);
+                $error = true;
+            }
+        }
+
+        if (!isset($data["id_servicio"]) || $data["id_servicio"] === "") {
+            $ms->addMessageTranslated('warning', 'UNLU.PETITION.SERVICE.MISSING', $data);
+            $error = true;
+        }
+
+        if (!isset($data["descripcion"]) || $data["descripcion"] === "") {
+            $ms->addMessageTranslated('warning', 'UNLU.PETITION.DESCRIPTION.MISSING', $data);
+            $error = true;
+        }
+
+        if ($error) {
+            return $response->withJson([], 400);
+        }
+
+        $classMapper = $this->ci->classMapper;
+
+        Capsule::transaction(function () use ($classMapper, $data, $ms, $config, $currentUser) {
+
+            try {
+                $peticion = $classMapper->createInstance("peticion", $data);
+                Debug::debug("Debug: Petición: $peticion");
+                $peticion->save();
+
+            } catch (\Exception $e) {
+                $msg = $e->getMessage();
+                Debug::debug("Error: $msg");
+            }
+
+            // Create activity record
+            $this->ci->userActivityLogger->info("User {$currentUser->user_name} solicitó una petición {$data->descripcion}.", [
+                'type'    => 'pastry_create',
+                'user_id' => $currentUser->id,
+            ]);
+
+            $ms->addMessageTranslated('success', 'UNLU.PETITION.ADDED', $data);
         });
 
         return $response->withJson([], 200);

@@ -10,6 +10,7 @@ use UserFrosting\Support\Exception\ForbiddenException;
 use UserFrosting\Sprinkle\Core\Facades\Debug;
 
 use UserFrosting\Sprinkle\Unlu\Database\Models\Peticion;
+use UserFrosting\Sprinkle\Unlu\Database\Models\Servicio;
 use UserFrosting\Sprinkle\Unlu\Database\Models\TipoUsuario;
 use UserFrosting\Sprinkle\Unlu\Database\Models\Vinculacion;
 
@@ -57,6 +58,39 @@ class UnluModalController extends SimpleController {
     }
 
     public function solicitarServicioModal(Request $request, Response $response, $args) {
+        /** @var UserFrosting\Sprinkle\Account\Authorize\AuthorizationManager */
+        $authorizer = $this->ci->authorizer;
+
+        /** @var UserFrosting\Sprinkle\Account\Database\Models\User $currentUser */
+        $currentUser = $this->ci->currentUser;
+
+        // Access-controlled page
+        // if (!$authorizer->checkAccess($currentUser, 'see_pastries')) {
+        //     throw new ForbiddenException();
+        // }
+
+        $servicios = Servicio::all();
+        $vinculaciones = Vinculacion::all();
+
+        // Datos de prueba, dejar vacío para producción
+        $peticion = [
+            "fecha_inicio" => "2019-11-10",
+            "fecha_fin" => "2019-11-30",
+            "id_servicio" => 1,
+            "id_vinculacion" => 28,
+            "descripcion" => "Prueba",
+        ];
+
+        return $this->ci->view->render($response, 'modals/peticion.html.twig', [
+            "peticion" => $peticion,
+            "servicios" => $servicios,
+            "vinculaciones" => $vinculaciones,
+            "form" => [
+                "action" => "api/unlu/peticion",
+                "method" => "POST",
+                "submit_text" => "Solicitar"
+            ]
+        ]);
     }
 
     public function bajaSolicitudModal(Request $request, Response $response, $args) {

@@ -1,0 +1,88 @@
+<form class="js-form" method="{{ form.method | default('POST') }}" action="{{ site.uri.public }}/{{ form.action }}">
+    {% include "forms/csrf.html.twig" %}
+    <div class="js-form-alerts">
+    </div>
+    <div class="row"> <!-- Fecha Inicio + Fin -->
+        <div class="col-sm-6"> <!-- Fecha Inicio -->
+            <div class="form-group">
+                <label>{{ translate("UNLU.PETITION.START_DATE") }}</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
+                    <input type="date" class="form-control" name="fecha_inicio" autocomplete="off"
+                           value="{{ peticion.fecha_inicio }}">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6"> <!-- Fecha Fin -->
+            <div class="form-group">
+                <label>{{ translate("UNLU.PETITION.END_DATE") }}</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
+                    <input type="date" class="form-control" name="fecha_fin" autocomplete="off"
+                           value="{{ peticion.fecha_fin }}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row"> <!-- Servicio + Vinculación -->
+        <div class="col-sm-6"> <!-- Servicio -->
+            <div class="form-group">
+                <label>{{ translate("UNLU.PETITION.SERVICE") }}</label>
+                <select class="form-control js-select2" name="id_servicio" {{ page.visibility }}>
+                    <option value="">{{ translate("UNLU.PETITION.SERVICE") }}</option>
+                    {% for servicio in servicios %}
+                    <option value="{{ servicio.id }}" {% if servicio.id == peticion.id_servicio %}selected="selected"{% endif %}>{{ servicio.denominacion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6"> <!-- Vinculación -->
+            <div class="form-group">
+                <label>{{ translate("UNLU.PETITION.VINCULATION") }}</label>
+                <select class="form-control js-select2" name="id_vinculacion" {{ page.visibility }}>
+                    <option value="">{{ translate("UNLU.PETITION.VINCULATION") }}</option>
+                    {% for vinc in vinculaciones %}
+                    <option value="{{ vinc.id }}" {% if vinc.id == peticion.id_vinculacion %}selected="selected"{% endif %}>{{ vinc.actividad }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row"> <!-- Descripción -->
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>{{ translate("UNLU.PETITION.DESCRIPTION") }}</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
+                    <textarea class="form-control" name="descripcion" autocomplete="off"
+                           value="{{ peticion.descripcion }}" placeholder="{{ translate("UNLU.PETITION.DESCRIPTION") }}"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row"> <!-- Observaciones -->
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>{{ translate("UNLU.PETITION.OBSERVATIONS") }}</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
+                    <textarea class="form-control" name="observaciones" autocomplete="off"
+                           value="{{ peticion.observaciones }}" placeholder="{{ translate("UNLU.PETITION.OBSERVATIONS") }}"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8 col-sm-4">
+            <button type="submit" class="btn btn-block btn-lg btn-success">{{ form.submit_text }}</button>
+        </div>
+        <div class="col-xs-4 col-sm-3 pull-right">
+            <button type="button" class="btn btn-block btn-lg btn-link" data-dismiss="modal">{{ translate("CANCEL") }}</button>
+        </div>
+    </div>
+</form>
+
+<!-- Include validation rules -->
+<script>
+    {% include "pages/partials/page.js.twig" %}
+</script>

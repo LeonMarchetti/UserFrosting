@@ -18,8 +18,11 @@ class ServicesProvider {
          */
         $container->extend('classMapper', function ($classMapper, $c) {
             $classMapper->setClassMapping("user", "UserFrosting\Sprinkle\Unlu\Database\Models\UsuarioUnlu");
-            $classMapper->setClassMapping('vinculacion', 'UserFrosting\Sprinkle\Unlu\Database\Models\Vinculacion');
+
+            $classMapper->setClassMapping("peticion", "UserFrosting\Sprinkle\Unlu\Database\Models\Peticion");
             $classMapper->setClassMapping("tipo_de_usuario", "UserFrosting\Sprinkle\Unlu\Database\Models\TipoUsuario");
+            $classMapper->setClassMapping('vinculacion', 'UserFrosting\Sprinkle\Unlu\Database\Models\Vinculacion');
+
             return $classMapper;
         });
     }

@@ -39,8 +39,10 @@ correo:
             message: "Dirección de correo inválido"
 fecha_fin:
     validators:
-        email:
+        length:
             label: FechaFin
+            min: 1
+            max: 255
             message: "Fecha inválida"
 descripcion:
     validators:

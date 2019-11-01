@@ -19,8 +19,7 @@ class Peticion extends Model
         'observaciones',
         'id_usuario',
         'id_vinculacion',
-        'id_servicio',
-        'activo'
+        'id_servicio'
     ];
 
     /**

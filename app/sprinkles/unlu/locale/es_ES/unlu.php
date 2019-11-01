@@ -17,6 +17,29 @@ return [
             "BEFORE" => "La fecha de finalización no puede ser anterior a la fecha de solicitud",
             "MISSING" => "Falta la fecha de finalización"
         ],
+        "PETITION" => [
+            "@TRANSLATION" => "Peticiones",
+            "DESCRIPTION" => [
+                "@TRANSLATION" => "Descripción",
+                "MISSING" => "Falta la descripción"
+            ],
+            "END_DATE" => [
+                "@TRANSLATION" => "Fecha de finalización",
+                "BEFORE" => "La fecha de finalización no puede ser anterior a la fecha de inicio",
+                "MISSING" => "Falta la fecha de finalización"
+            ],
+            "OBSERVATIONS" => "Observaciones",
+            "SERVICE" => [
+                "@TRANSLATION" => "Servicio",
+                "MISSING" => "Falta el servicio"
+            ],
+            "START_DATE" => [
+                "@TRANSLATION" => "Fecha de inicio",
+                "BEFORE" => "La fecha de inicio no puede ser anterior a hoy",
+                "MISSING" => "Falta la fecha de inicio"
+            ],
+            "VINCULATION" => "Vinculación",
+        ],
         "PHONE" => [
             "@TRANSLATION" => "Teléfono",
             "MISSING" => "Falta asignar el número de teléfono en el perfil"
