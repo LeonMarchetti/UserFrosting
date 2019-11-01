@@ -87,8 +87,8 @@
                 <label>{{ translate("UNLU.DESCRIPTION") }}</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
-                    <input type="text" class="form-control" name="descripcion" autocomplete="off"
-                           value="{{ vinc.descripcion }}" placeholder="{{ translate("UNLU.DESCRIPTION") }}">
+                    <textarea class="form-control" name="descripcion" autocomplete="off"
+                           value="{{ vinc.descripcion }}" placeholder="{{ translate("UNLU.DESCRIPTION") }}"></textarea>
                 </div>
             </div>
         </div>
@@ -98,7 +98,7 @@
             <button type="submit" class="btn btn-block btn-lg btn-success">{{ form.submit_text }}</button>
         </div>
         <div class="col-xs-4 col-sm-3 pull-right">
-            <button type="button" class="btn btn-block btn-lg btn-link" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-block btn-lg btn-link" data-dismiss="modal">{{ translate("CANCEL") }}</button>
         </div>
     </div>
 </form>
