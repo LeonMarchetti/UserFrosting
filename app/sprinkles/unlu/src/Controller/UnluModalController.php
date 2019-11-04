@@ -94,6 +94,32 @@ class UnluModalController extends SimpleController {
     }
 
     public function bajaSolicitudModal(Request $request, Response $response, $args) {
+        /** @var UserFrosting\Sprinkle\Account\Authorize\AuthorizationManager */
+        $authorizer = $this->ci->authorizer;
+
+        /** @var UserFrosting\Sprinkle\Account\Database\Models\User $currentUser */
+        $currentUser = $this->ci->currentUser;
+
+        // Access-controlled page
+        // if (!$authorizer->checkAccess($currentUser, 'see_pastries')) {
+        //     throw new ForbiddenException();
+        // }
+
+        $peticiones = Peticion::where('id_usuario', $currentUser->id)->get();
+        $servicios = Servicio::all();
+
+        foreach ($peticiones as $peticion) {
+            $peticion->servicio = $servicios->find($peticion->id_servicio)->denominacion;
+        }
+
+        return $this->ci->view->render($response, 'modals/baja-solicitud.html.twig', [
+            "peticiones" => $peticiones,
+            "form" => [
+                "action" => "api/unlu/baja-solicitud",
+                "method" => "POST",
+                "submit_text" => "Borrar"
+            ]
+        ]);
     }
 
 }

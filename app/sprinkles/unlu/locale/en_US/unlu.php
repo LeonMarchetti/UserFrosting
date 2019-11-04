@@ -19,10 +19,12 @@ return [
         ],
         "PETITION" => [
             "@TRANSLATION" => "Petitions",
+            "ADDED" => "The petition was requested succesfully",
             "DESCRIPTION" => [
                 "@TRANSLATION" => "Description",
                 "MISSING" => "Description is missing"
             ],
+            "DOWN" => "Remove Request",
             "END_DATE" => [
                 "@TRANSLATION" => "End date",
                 "BEFORE" => "The end date occurs before the start date",

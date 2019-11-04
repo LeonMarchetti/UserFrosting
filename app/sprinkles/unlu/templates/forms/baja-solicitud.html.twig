@@ -1,0 +1,30 @@
+<form class="js-form" method="{{ form.method | default('POST') }}" action="{{ site.uri.public }}/{{ form.action }}">
+    {% include "forms/csrf.html.twig" %}
+    <div class="js-form-alerts"></div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                {# <ul>
+                    {% for peticion in peticiones %}
+                    <li>{{ peticion.descripcion }}<br>{{ peticion.servicio }}</li>
+                    {% endfor %}
+                </ul> #}
+                <label>{{ translate("UNLU.PETITION") }}</label>
+                <select class="form-control js-select2" name="peticion" {{ page.visibility }}>
+                    {% for peticion in peticiones %}
+                    <option value="{{ peticion.id }}">{{ peticion.descripcion }}</option>
+                    <option disabled>&uarr;{{ peticion.servicio }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8 col-sm-4">
+            <button type="submit" class="btn btn-block btn-lg btn-danger">{{ form.submit_text }}</button>
+        </div>
+        <div class="col-xs-4 col-sm-3 pull-right">
+            <button type="button" class="btn btn-block btn-lg btn-link" data-dismiss="modal">{{ translate("CANCEL") }}</button>
+        </div>
+    </div>
+</form>

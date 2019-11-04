@@ -19,10 +19,12 @@ return [
         ],
         "PETITION" => [
             "@TRANSLATION" => "Peticiones",
+            "ADDED" => "La petición fue solicitada exitosamente",
             "DESCRIPTION" => [
                 "@TRANSLATION" => "Descripción",
                 "MISSING" => "Falta la descripción"
             ],
+            "DOWN" => "Baja Solicitud",
             "END_DATE" => [
                 "@TRANSLATION" => "Fecha de finalización",
                 "BEFORE" => "La fecha de finalización no puede ser anterior a la fecha de inicio",

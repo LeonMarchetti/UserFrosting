@@ -6,7 +6,7 @@ $(function() {
         var form = modal.find('.js-form');
 
         form.ufForm().on("submitSuccess.ufForm", function() {
-            window.location.reload();
+            window.location.reload(true);
         });
     });
 

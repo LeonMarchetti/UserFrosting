@@ -233,7 +233,6 @@ class UnluController extends SimpleController {
 
             try {
                 $peticion = $classMapper->createInstance("peticion", $data);
-                Debug::debug("Debug: Petición: $peticion");
                 $peticion->save();
 
             } catch (\Exception $e) {
@@ -251,5 +250,65 @@ class UnluController extends SimpleController {
         });
 
         return $response->withJson([], 200);
+    }
+
+    public function bajaSolicitud(Request $request, Response $response, $args) {
+
+        $params = $request->getParsedBody();
+
+        $peticion = $this->getPeticionFromParams($params);
+
+        if (!$peticion) {
+            throw new NotFoundException();
+        }
+
+        /** @var \UserFrosting\Sprinkle\Account\Authorize\AuthorizationManager $authorizer */
+        $authorizer = $this->ci->authorizer;
+
+        /** @var \UserFrosting\Sprinkle\Account\Database\Models\Interfaces\UserInterface $currentUser */
+        $currentUser = $this->ci->currentUser;
+
+        /** @var \UserFrosting\Support\Repository\Repository $config */
+        $config = $this->ci->config;
+
+        // Begin transaction - DB will be rolled back if an exception occurs
+        Capsule::transaction(function () use ($peticion, $currentUser) {
+            $peticion->delete();
+            unset($peticion);
+
+            // Create activity record
+            $this->ci->userActivityLogger->info("Usuario {$currentUser->user_name} borró la petición {$peticion->id}.", [
+                'type'    => 'pastry_delete',
+                'user_id' => $currentUser->id,
+            ]);
+        });
+
+        /** @var \UserFrosting\Sprinkle\Core\Alert\AlertStream $ms */
+        $ms = $this->ci->alerts;
+
+        $ms->addMessageTranslated('success', 'UNLU.PETITION.DELETE_SUCCESSFUL', [
+            'user_name' => $peticon->id,
+        ]);
+
+        return $response->withJson([], 200);
+    }
+
+    protected function getPeticionFromParams($params) {
+        $schema = new RequestSchema("schema://requests/unlu/get-peticion.yaml");
+
+        // Whitelist and set parameter defaults
+        $transformer = new RequestDataTransformer($schema);
+        $data = $transformer->transform($params);
+
+        /** @var \UserFrosting\Sprinkle\Core\Util\ClassMapper $classMapper */
+        $classMapper = $this->ci->classMapper;
+
+        // Get the user to delete
+        $peticion = $classMapper
+                    ->getClassMapping('peticion')
+                    ::where('id', $data['peticion'])
+                    ->first();
+
+        return $peticion;
     }
 }
