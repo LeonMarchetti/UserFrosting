@@ -88,7 +88,31 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
                     <textarea class="form-control" name="descripcion" autocomplete="off"
-                           value="{{ vinc.descripcion }}" placeholder="{{ translate("UNLU.DESCRIPTION") }}"></textarea>
+                           placeholder="{{ translate("UNLU.DESCRIPTION") }}">{{ vinc.descripcion }}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>{{ translate("UNLU.MEMBERS") }}</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
+                    <div id="integrantes">
+                        <select class="form-control js-select2 input-integrante" name="integrantes[]" {{ page.visibility }}>
+                            <option value="">Usuario</option>
+                            {% for usuario in usuarios %}
+                            <option value="{{ usuario.id }}">{{ usuario.full_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <button type="button" class="btn btn-block btn-lg btn-success agregar-integrante">Agregar</button>
+                </div>
+                <div class="col-sm-6">
+                    <button type="button" class="btn btn-block btn-lg btn-danger quitar-integrante">Quitar</button>
                 </div>
             </div>
         </div>
@@ -104,6 +128,9 @@
 </form>
 
 <!-- Include validation rules -->
-<script>
-    {% include "pages/partials/page.js.twig" %}
-</script>
+{% block scripts_page %}
+    <script>{% include "pages/partials/page.js.twig" %}</script>
+
+    {{ assets.js('js/forms/vinculacion') | raw }}
+
+{% endblock %}

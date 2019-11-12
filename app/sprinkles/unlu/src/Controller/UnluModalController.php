@@ -12,6 +12,7 @@ use UserFrosting\Sprinkle\Core\Facades\Debug;
 use UserFrosting\Sprinkle\Unlu\Database\Models\Peticion;
 use UserFrosting\Sprinkle\Unlu\Database\Models\Servicio;
 use UserFrosting\Sprinkle\Unlu\Database\Models\TipoUsuario;
+use UserFrosting\Sprinkle\Unlu\Database\Models\UsuarioUnlu as Usuario;
 use UserFrosting\Sprinkle\Unlu\Database\Models\Vinculacion;
 
 
@@ -39,16 +40,19 @@ class UnluModalController extends SimpleController {
         ];
 
         // Valores de prueba para solicitar vinculación, comentar para producción:
-        // $vinculacion["actividad"] = "Antes";
-        // $vinculacion["fecha_fin"] = "2019-01-01";
-        // $vinculacion["descripcion"] = "Fecha fin antes que la fecha actual";
+        // $vinculacion["actividad"] = "Prueba integrantes";
+        // $vinculacion["fecha_fin"] = "2020-01-01";
+        // $vinculacion["tipo_de_usuario"] = 3;
+        // $vinculacion["descripcion"] = "Prueba de integrantes";
 
         // Lista de tipos de usuario
         $tipos_de_usuario = TipoUsuario::all();
+        $usuarios = Usuario::all();
 
         return $this->ci->view->render($response, 'modals/vinculacion.html.twig', [
             "vinc" => $vinculacion,
             "tipos_de_usuario" => $tipos_de_usuario,
+            "usuarios" => $usuarios,
             "form" => [
                 "action" => "api/unlu",
                 "method" => "POST",
@@ -72,17 +76,7 @@ class UnluModalController extends SimpleController {
         $servicios = Servicio::all();
         $vinculaciones = Vinculacion::all();
 
-        // Datos de prueba, dejar vacío para producción
-        $peticion = [
-            "fecha_inicio" => "2019-11-10",
-            "fecha_fin" => "2019-11-30",
-            "id_servicio" => 1,
-            "id_vinculacion" => 28,
-            "descripcion" => "Prueba",
-        ];
-
         return $this->ci->view->render($response, 'modals/peticion.html.twig', [
-            "peticion" => $peticion,
             "servicios" => $servicios,
             "vinculaciones" => $vinculaciones,
             "form" => [

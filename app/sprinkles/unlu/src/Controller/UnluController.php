@@ -9,8 +9,9 @@ use UserFrosting\Sprinkle\Core\Controller\SimpleController;
 use UserFrosting\Support\Exception\ForbiddenException;
 use UserFrosting\Sprinkle\Core\Facades\Debug;
 
-use UserFrosting\Sprinkle\Unlu\Database\Models\Vinculacion;
 use UserFrosting\Sprinkle\Unlu\Database\Models\Peticion;
+use UserFrosting\Sprinkle\Unlu\Database\Models\Vinculacion;
+use UserFrosting\Sprinkle\Unlu\Database\Models\UsuarioUnlu as Usuario;
 
 use UserFrosting\Fortress\RequestDataTransformer;
 use UserFrosting\Fortress\RequestSchema;
@@ -133,6 +134,28 @@ class UnluController extends SimpleController {
             $error = true;
         }
 
+        if (!isset($data['integrantes'])) {
+            $ms->addMessageTranslated('danger', 'UNLU.MEMBERS.MISSING', $data);
+            $error = true;
+
+        } else {
+            foreach ($data["integrantes"] as $k => $v) {
+                if ($v === "") {
+                    unset($data["integrantes"][$k]);
+                }
+            }
+
+            if (empty($data['integrantes'])) {
+                $ms->addMessageTranslated('danger', 'UNLU.MEMBERS.MISSING', $data);
+                $error = true;
+            }
+
+            if (count($data["integrantes"]) !== count(array_flip($data["integrantes"]))) {
+                $ms->addMessageTranslated('danger', 'UNLU.MEMBERS.REPEATED', $data);
+                $error = true;
+            }
+        }
+
         if ($error) {
             return $response->withJson([], 400);
         }
@@ -143,9 +166,20 @@ class UnluController extends SimpleController {
 
             $vinculacion = $classMapper->createInstance("vinculacion", $data);
             $vinculacion->save();
+            # $vinculacion->id tiene el id generado para esta instancia, si es autoincrement
+
+            foreach ($data["integrantes"] as $id_usuario) {
+                $data_integrantes = [
+                    "id_usuario" => $id_usuario,
+                    "id_vinculacion" => $id_vinculacion,
+                    "nombre" => Usuario::find($id_usuario)->full_name
+                ];
+                $integrante = $classMapper->createInstance("integrante", $data_integrantes);
+                //$integrante->save();
+            }
 
             // Create activity record
-            $this->ci->userActivityLogger->info("User {$currentUser->user_name} created a new vinculation.", [
+            $this->ci->userActivityLogger->info("User {$currentUser->user_name} created a new vinculation {$vinculacion->id}.", [
                 'type'    => 'pastry_create',
                 'user_id' => $currentUser->id,
             ]);

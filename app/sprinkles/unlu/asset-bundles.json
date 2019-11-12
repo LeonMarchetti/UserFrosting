@@ -9,6 +9,12 @@
             "styles": [
                 "userfrosting/css/pages/unlu.css"
             ]
+        },
+
+        "js/forms/vinculacion": {
+            "scripts": [
+                "userfrosting/js/forms/vinculacion.js"
+            ]
         }
     }
 }
