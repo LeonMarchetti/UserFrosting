@@ -7,6 +7,7 @@ return [
             "@TRANSLATION" => "Actividad",
             "MISSING" => "Falta la actividad"
         ],
+        "DEPENDENCY" => "Dependencia",
         "DESCRIPTION" => [
             "@TRANSLATION" => "Descripción",
             "MISSING" => "Falta la descripción"
@@ -16,6 +17,12 @@ return [
             "@TRANSLATION" => "Fecha de finalización",
             "BEFORE" => "La fecha de finalización no puede ser anterior a la fecha de solicitud",
             "MISSING" => "Falta la fecha de finalización"
+        ],
+        "INSTITUTION" => "Institución",
+        "MEMBERS" => [
+            "@TRANSLATION" => "Integrantes",
+            "MISSING" => "Faltan los integrantes",
+            "REPEATED" => "Hay integrantes repetidos"
         ],
         "PETITION" => [
             "@TRANSLATION" => "Peticiones",

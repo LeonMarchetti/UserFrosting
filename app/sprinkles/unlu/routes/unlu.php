@@ -4,6 +4,10 @@ $app->group('/unlu', function () {
     $this->get('', 'UserFrosting\Sprinkle\Unlu\Controller\UnluController:page');
 })->add('authGuard');
 
+$app->group('/admin/users', function() {
+    $this->get('/u/{user_name}', 'UserFrosting\Sprinkle\Unlu\Controller\UsuarioUnluController:pageInfo');
+})->add('authGuard');
+
 $app->group('/modals/unlu', function () {
     $this->get('/solicitar-vinculacion', 'UserFrosting\Sprinkle\Unlu\Controller\UnluModalController:solicitarVinculacionModal');
     $this->get('/solicitar-servicio', 'UserFrosting\Sprinkle\Unlu\Controller\UnluModalController:solicitarServicioModal');

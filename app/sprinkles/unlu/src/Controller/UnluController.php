@@ -166,16 +166,17 @@ class UnluController extends SimpleController {
 
             $vinculacion = $classMapper->createInstance("vinculacion", $data);
             $vinculacion->save();
-            # $vinculacion->id tiene el id generado para esta instancia, si es autoincrement
+            // $vinculacion->id tiene el id generado para esta instancia, si es autoincrement
 
+            // Agarro los id de usuario de la lista de integrantes para insertarlos en la base de datos:
             foreach ($data["integrantes"] as $id_usuario) {
                 $data_integrantes = [
                     "id_usuario" => $id_usuario,
-                    "id_vinculacion" => $id_vinculacion,
+                    "id_vinculacion" => $vinculacion->id,
                     "nombre" => Usuario::find($id_usuario)->full_name
                 ];
                 $integrante = $classMapper->createInstance("integrante", $data_integrantes);
-                //$integrante->save();
+                $integrante->save();
             }
 
             // Create activity record

@@ -37,13 +37,13 @@ class UnluModalController extends SimpleController {
             "cargo" => $currentUser->rol,
             "correo" => $currentUser->email,
             "telefono" => $currentUser->telefono,
-        ];
 
-        // Valores de prueba para solicitar vinculación, comentar para producción:
-        // $vinculacion["actividad"] = "Prueba integrantes";
-        // $vinculacion["fecha_fin"] = "2020-01-01";
-        // $vinculacion["tipo_de_usuario"] = 3;
-        // $vinculacion["descripcion"] = "Prueba de integrantes";
+            // Valores de prueba para solicitar vinculación, comentar para producción:
+            // "actividad" => "Prueba integrantes",
+            // "fecha_fin" => "2020-01-01",
+            // "tipo_de_usuario" => 3,
+            // "descripcion" => "Prueba de integrantes",
+        ];
 
         // Lista de tipos de usuario
         $tipos_de_usuario = TipoUsuario::all();

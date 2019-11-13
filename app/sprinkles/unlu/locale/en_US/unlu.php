@@ -7,6 +7,7 @@ return [
             "@TRANSLATION" => "Activity",
             "MISSING" => "Activity is missing"
         ],
+        "DEPENDENCY" => "Dependency",
         "DESCRIPTION" => [
             "@TRANSLATION" => "Description",
             "MISSING" => "Description is missing"
@@ -16,6 +17,12 @@ return [
             "@TRANSLATION" => "End date",
             "BEFORE" => "End date can't be before than request date",
             "MISSING" => "End date is missing"
+        ],
+        "INSTITUTION" => "Institution",
+        "MEMBERS" => [
+            "@TRANSLATION" => "Members",
+            "MISSING" => "Members are missing",
+            "REPEATED" => "There are repeated members"
         ],
         "PETITION" => [
             "@TRANSLATION" => "Petitions",
