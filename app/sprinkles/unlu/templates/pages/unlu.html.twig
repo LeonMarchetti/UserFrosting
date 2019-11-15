@@ -26,6 +26,7 @@
                 </div>
             </a>
         </div>
+        {% if checkAccess("view_system_info") %}
         <div class="col-sm-4">
             <a href="#" class="baja-solicitud">
                 <div class="info-box">
@@ -36,6 +37,7 @@
                 </div>
             </a>
         </div>
+        {% endif %}
     </div>
 
     <div class="row">

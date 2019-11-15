@@ -21,6 +21,7 @@ return [
         "INSTITUTION" => "Institución",
         "MEMBERS" => [
             "@TRANSLATION" => "Integrantes",
+            "HELP" => "Podés o elegir un usuario existente en el sistema en la lista desplegable de la izquierda o indicar un nombre en el cuadro de la derecha, que no va a estar asociado a ningún usuario (lo primero toma prioridad).",
             "MISSING" => "Faltan los integrantes",
             "REPEATED" => "Hay integrantes repetidos"
         ],

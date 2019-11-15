@@ -21,6 +21,7 @@ return [
         "INSTITUTION" => "Institution",
         "MEMBERS" => [
             "@TRANSLATION" => "Members",
+            "HELP" => "You can choose an existing user in the system in the dropdown list to the left or input a name in the text box to the right, which won't be associated to any user in the system (the former takes precedence).",
             "MISSING" => "Members are missing",
             "REPEATED" => "There are repeated members"
         ],

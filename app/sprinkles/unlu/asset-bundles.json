@@ -15,6 +15,12 @@
             "scripts": [
                 "userfrosting/js/forms/vinculacion.js"
             ]
+        },
+
+        "css/forms/vinculacion": {
+            "styles": [
+                "userfrosting/css/forms/vinculacion.css"
+            ]
         }
     }
 }

@@ -100,14 +100,18 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-edit fa-fw"></i></span>
                     <div id="integrantes">
-                        <select class="form-control js-select2 input-integrante" name="integrantes[]" {{ page.visibility }}>
-                            <option value="">Usuario</option>
-                            {% for usuario in usuarios %}
-                            <option value="{{ usuario.id }}">{{ usuario.full_name }}</option>
-                            {% endfor %}
-                        </select>
+                        <div class="controles_integrante">
+                            <select class="form-control js-select2" name="integrantes_id[]" {{ page.visibility }}>
+                                <option value="">Usuario</option>
+                                {% for usuario in usuarios %}
+                                <option value="{{ usuario.id }}">{{ usuario.full_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="text" class="form-control" name="integrantes_nombre[]" autocomplete="off" placeholder="Nombre"/>
+                        </div>
                     </div>
                 </div>
+                <p class="help-block">{{ translate("UNLU.MEMBERS.HELP") }}</p>
                 <div class="col-sm-6">
                     <button type="button" class="btn btn-block btn-lg btn-success agregar-integrante">Agregar</button>
                 </div>
@@ -132,5 +136,6 @@
     <script>{% include "pages/partials/page.js.twig" %}</script>
 
     {{ assets.js('js/forms/vinculacion') | raw }}
+    {{ assets.css('css/forms/vinculacion') | raw }}
 
 {% endblock %}
