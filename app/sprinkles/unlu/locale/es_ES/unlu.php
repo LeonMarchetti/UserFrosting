@@ -2,7 +2,7 @@
 
 return [
     "UNLU" => [
-        "@TRANSLATION" => "Unlu",
+        "@TRANSLATION" => "UNLu",
         "ACTIVITY" => [
             "@TRANSLATION" => "Actividad",
             "MISSING" => "Falta la actividad"
@@ -68,5 +68,6 @@ return [
             "@TRANSLATION" => "Vinculación",
             "ADDED" => "Vinculación solicitada"
         ],
+        "VINCULATIONS" => "Vinculaciones",
     ]
 ];

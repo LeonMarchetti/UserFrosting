@@ -13,7 +13,7 @@
                 <select class="form-control js-select2" name="peticion" {{ page.visibility }}>
                     {% for peticion in peticiones %}
                     <option value="{{ peticion.id }}">{{ peticion.descripcion }}</option>
-                    <option disabled>&uarr;{{ peticion.servicio }}</option>
+                    <option disabled>&uarr;{{ peticion.servicio.denominacion }}</option>
                     {% endfor %}
                 </select>
             </div>

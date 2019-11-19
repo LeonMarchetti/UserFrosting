@@ -1,11 +1,11 @@
 {% extends 'pages/abstract/dashboard.html.twig' %}
 
 {# Overrides blocks in head of base template #}
-{% block page_title %}UNLu{% endblock %}
-{% block page_description %}UNLu{% endblock %}
+{% block page_title %}{{ translate("UNLU") }}{% endblock %}
+{% block page_description %}{{ translate("UNLU") }}{% endblock %}
 
 {% block body_matter %}
-    <div class="row">
+    <div class="row"> <!-- acciones -->
         <div class="col-sm-4">
             <a href="#" class="solicitar-vinculacion">
                 <div class="info-box">
@@ -45,14 +45,15 @@
         <div class="col-sm-6">
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3>Vinculaciones</h3>
+                    <h3>{{ translate("UNLU.VINCULATIONS") }}</h3>
                 </div>
                 <div class="box-body no-padding">
                     <table class="table table-bordered table-hover table-striped">
                         <thead>
                             <tr>
-                                <th>Descripcion</th>
-                                <th>Responsable</th>
+                                <th>{{ translate("UNLU.DESCRIPTION") }}</th>
+                                <th>{{ translate("UNLU.RESPONSABLE") }}</th>
+                                <th>Usuario</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,6 +61,7 @@
                             <tr>
                                 <td>{{ vinculacion.descripcion }}</td>
                                 <td>{{ vinculacion.responsable }}</td>
+                                <td>{{ vinculacion.solicitante.user_name }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -72,14 +74,14 @@
         <div class="col-sm-6">
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3>Peticiones</h3>
+                    <h3>{{ translate("UNLU.PETITION") }}</h3>
                 </div>
                 <div class="box-body no-padding">
                     <table class="table table-bordered table-hover table-striped">
                         <thead>
                             <tr>
-                                <th>Descripcion</th>
-                                <th>Servicio</th>
+                                <th>{{ translate("UNLU.PETITION.DESCRIPTION") }}</th>
+                                <th>{{ translate("UNLU.PETITION.SERVICE") }}</th>
                             </tr>
                         </thead>
                         <tbody>

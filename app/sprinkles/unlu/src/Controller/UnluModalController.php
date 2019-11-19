@@ -27,7 +27,7 @@ class UnluModalController extends SimpleController {
         $currentUser = $this->ci->currentUser;
 
         // Access-controlled page
-        // if (!$authorizer->checkAccess($currentUser, 'see_pastries')) {
+        // if (!$authorizer->checkAccess($currentUser, '')) {
         //     throw new ForbiddenException();
         // }
 
@@ -69,7 +69,7 @@ class UnluModalController extends SimpleController {
         $currentUser = $this->ci->currentUser;
 
         // Access-controlled page
-        // if (!$authorizer->checkAccess($currentUser, 'see_pastries')) {
+        // if (!$authorizer->checkAccess($currentUser, '')) {
         //     throw new ForbiddenException();
         // }
 
@@ -95,16 +95,11 @@ class UnluModalController extends SimpleController {
         $currentUser = $this->ci->currentUser;
 
         // Access-controlled page
-        // if (!$authorizer->checkAccess($currentUser, 'see_pastries')) {
+        // if (!$authorizer->checkAccess($currentUser, '')) {
         //     throw new ForbiddenException();
         // }
 
         $peticiones = Peticion::where('id_usuario', $currentUser->id)->get();
-        $servicios = Servicio::all();
-
-        foreach ($peticiones as $peticion) {
-            $peticion->servicio = $servicios->find($peticion->id_servicio)->denominacion;
-        }
 
         return $this->ci->view->render($response, 'modals/baja-solicitud.html.twig', [
             "peticiones" => $peticiones,

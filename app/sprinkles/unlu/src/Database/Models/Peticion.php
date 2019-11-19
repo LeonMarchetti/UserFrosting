@@ -22,6 +22,13 @@ class Peticion extends Model
         'id_servicio'
     ];
 
+    public function servicio() {
+        /** @var \UserFrosting\Sprinkle\Core\Util\ClassMapper $classMapper */
+        $classMapper = static::$ci->classMapper;
+
+        return $this->belongsTo($classMapper->getClassMapping("servicio"), "id_servicio", "id");
+    }
+
     /**
      * @var bool Enable timestamps for this class.
      */

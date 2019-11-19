@@ -32,6 +32,13 @@ class Vinculacion extends Model {
         return $this->belongsTo($classMapper->getClassMapping("tipo_de_usuario"), "tipo_de_usuario", "id");
     }
 
+    public function solicitante() {
+        /** @var \UserFrosting\Sprinkle\Core\Util\ClassMapper $classMapper */
+        $classMapper = static::$ci->classMapper;
+
+        return $this->belongsTo($classMapper->getClassMapping("user"), "id_solicitante", "id");
+    }
+
     /**
      * @var bool Enable timestamps for this class.
      */
