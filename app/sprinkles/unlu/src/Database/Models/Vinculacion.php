@@ -24,7 +24,7 @@ class Vinculacion extends Model {
         'descripcion'
     ];
 
-    public function tipo_de_usuario() {
+    public function tipo_usuario() {
 
         /** @var \UserFrosting\Sprinkle\Core\Util\ClassMapper $classMapper */
         $classMapper = static::$ci->classMapper;
@@ -37,6 +37,13 @@ class Vinculacion extends Model {
         $classMapper = static::$ci->classMapper;
 
         return $this->belongsTo($classMapper->getClassMapping("user"), "id_solicitante", "id");
+    }
+
+    public function integrantes() {
+        /** @var \UserFrosting\Sprinkle\Core\Util\ClassMapper $classMapper */
+        $classMapper = static::$ci->classMapper;
+
+        return $this->hasMany($classMapper->getClassMapping("integrante"), "id_vinculacion", "id");
     }
 
     /**

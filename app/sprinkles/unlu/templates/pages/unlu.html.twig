@@ -42,26 +42,48 @@
 
     <div class="row">
         <!-- Vinculaciones -->
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3>{{ translate("UNLU.VINCULATIONS") }}</h3>
                 </div>
-                <div class="box-body no-padding">
+                <div class="box-body no-padding" style="overflow-x: scroll">
                     <table class="table table-bordered table-hover table-striped">
                         <thead>
                             <tr>
-                                <th>{{ translate("UNLU.DESCRIPTION") }}</th>
                                 <th>{{ translate("UNLU.RESPONSABLE") }}</th>
-                                <th>Usuario</th>
+                                <th>{{ translate("USER") }}</th>
+                                <th>{{ translate("UNLU.REQUEST_DATE") }}</th>
+                                <th>{{ translate("UNLU.END_DATE") }}</th>
+                                <th>{{ translate("UNLU.ROLE") }}</th>
+                                <th>{{ translate("UNLU.TYPE") }}</th>
+                                <th>{{ translate("UNLU.ACTIVITY") }}</th>
+                                <th>{{ translate("UNLU.PHONE") }}</th>
+                                <th>{{ translate("UNLU.EMAIL") }}</th>
+                                <th>{{ translate("UNLU.MEMBERS") }}</th>
+                                <th>{{ translate("UNLU.DESCRIPTION") }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for vinculacion in vinculaciones %}
                             <tr>
-                                <td>{{ vinculacion.descripcion }}</td>
-                                <td>{{ vinculacion.responsable }}</td>
-                                <td>{{ vinculacion.solicitante.user_name }}</td>
+                                <td nowrap>{{ vinculacion.responsable }}</td>
+                                <td nowrap>{{ vinculacion.solicitante.user_name }}</td>
+                                <td nowrap>{{ vinculacion.fecha_solicitud | date("d/m/Y") }}</td>
+                                <td nowrap>{{ vinculacion.fecha_fin | date("d/m/Y") }}</td>
+                                <td nowrap>{{ vinculacion.cargo }}</td>
+                                <td nowrap>{{ vinculacion.tipo_usuario.description }}</td>
+                                <td nowrap>{{ vinculacion.actividad }}</td>
+                                <td nowrap>{{ vinculacion.telefono }}</td>
+                                <td nowrap>{{ vinculacion.correo }}</td>
+                                <td nowrap>
+                                    <ul>
+                                        {% for integrante in vinculacion.integrantes %}
+                                        <li>{{ integrante.nombre }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td><textarea readonly>{{ vinculacion.descripcion }}</textarea></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -69,26 +91,40 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="row">
         <!-- Peticiones -->
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3>{{ translate("UNLU.PETITION") }}</h3>
                 </div>
-                <div class="box-body no-padding">
+                <div class="box-body no-padding" style="overflow-x: scroll">
                     <table class="table table-bordered table-hover table-striped">
                         <thead>
                             <tr>
-                                <th>{{ translate("UNLU.PETITION.DESCRIPTION") }}</th>
+                                <th>{{ translate("UNLU.PETITION.START_DATE") }}</th>
+                                <th>{{ translate("UNLU.PETITION.END_DATE") }}</th>
+                                <th>{{ translate("USER") }}</th>
+                                <th>{{ translate("UNLU.PETITION.VINCULATION") }}</th>
                                 <th>{{ translate("UNLU.PETITION.SERVICE") }}</th>
+                                <th>{{ translate("UNLU.PETITION.APPROVED") }}</th>
+                                <th>{{ translate("UNLU.PETITION.DESCRIPTION") }}</th>
+                                <th>{{ translate("UNLU.PETITION.OBSERVATIONS") }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for peticion in peticiones %}
                             <tr>
-                                <td>{{ peticion.descripcion }}</td>
-                                <td>{{ peticion.id_servicio }}</td>
+                                <td nowrap>{{ peticion.fecha_inicio | date("d/m/Y") }}</td>
+                                <td nowrap>{{ peticion.fecha_fin | date("d/m/Y") }}</td>
+                                <td nowrap>{{ peticion.usuario.user_name }}</td>
+                                <td nowrap>{{ peticion.vinculacion.actividad }}</td>
+                                <td nowrap>{{ peticion.servicio.denominacion }}</td>
+                                <td><input type="checkbox" {% if peticion.aprobada %}checked{% endif %} onclick="return false;"/></td>
+                                <td><textarea readonly>{{ peticion.descripcion }}</textarea></td>
+                                <td><textarea readonly>{{ peticion.observaciones }}</textarea></td>
                             </tr>
                             {% endfor %}
                         </tbody>

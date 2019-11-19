@@ -28,6 +28,7 @@ return [
         "PETITION" => [
             "@TRANSLATION" => "Peticiones",
             "ADDED" => "La petición fue solicitada exitosamente",
+            "APPROVED" => "Aprobada",
             "DESCRIPTION" => [
                 "@TRANSLATION" => "Descripción",
                 "MISSING" => "Falta la descripción"
@@ -55,6 +56,7 @@ return [
             "MISSING" => "Falta asignar el número de teléfono en el perfil"
         ],
         "POSITION" => "Cargo",
+        "REQUEST_DATE" => "Fecha solicitud",
         "RESPONSABLE" => "Responsable",
         "ROLE" => [
             "@TRANSLATION" => "Rol",

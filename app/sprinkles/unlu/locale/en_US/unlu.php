@@ -28,6 +28,7 @@ return [
         "PETITION" => [
             "@TRANSLATION" => "Petitions",
             "ADDED" => "The petition was requested succesfully",
+            "APPROVED" => "Approved",
             "DESCRIPTION" => [
                 "@TRANSLATION" => "Description",
                 "MISSING" => "Description is missing"
@@ -55,6 +56,7 @@ return [
             "MISSING" => "Phone number is not assigned in user profile"
         ],
         "POSITION" => "Position",
+        "REQUEST_DATE" => "Request date",
         "RESPONSABLE" => "Responsable",
         "ROLE" => [
             "@TRANSLATION" => "Role",

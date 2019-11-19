@@ -19,7 +19,8 @@ class Peticion extends Model
         'observaciones',
         'id_usuario',
         'id_vinculacion',
-        'id_servicio'
+        'id_servicio',
+        'aprobada'
     ];
 
     public function servicio() {
@@ -27,6 +28,20 @@ class Peticion extends Model
         $classMapper = static::$ci->classMapper;
 
         return $this->belongsTo($classMapper->getClassMapping("servicio"), "id_servicio", "id");
+    }
+
+    public function usuario() {
+        /** @var \UserFrosting\Sprinkle\Core\Util\ClassMapper $classMapper */
+        $classMapper = static::$ci->classMapper;
+
+        return $this->belongsTo($classMapper->getClassMapping("user"), "id_usuario", "id");
+    }
+
+    public function vinculacion() {
+        /** @var \UserFrosting\Sprinkle\Core\Util\ClassMapper $classMapper */
+        $classMapper = static::$ci->classMapper;
+
+        return $this->belongsTo($classMapper->getClassMapping("vinculacion"), "id_vinculacion", "id");
     }
 
     /**
