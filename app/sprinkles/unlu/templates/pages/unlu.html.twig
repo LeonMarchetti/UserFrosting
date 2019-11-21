@@ -44,9 +44,7 @@
         <!-- Vinculaciones -->
         <div class="col-sm-12">
             <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3>{{ translate("UNLU.VINCULATIONS") }}</h3>
-                </div>
+                <div class="box-header with-border"><h3>{{ translate("UNLU.VINCULATIONS") }}</h3></div>
                 <div class="box-body no-padding" style="overflow-x: scroll">
                     <table class="table table-bordered table-hover table-striped">
                         <thead>
@@ -62,6 +60,7 @@
                                 <th>{{ translate("UNLU.EMAIL") }}</th>
                                 <th>{{ translate("UNLU.MEMBERS") }}</th>
                                 <th>{{ translate("UNLU.DESCRIPTION") }}</th>
+                                <th>{{ translate("UNLU.CERTIFICATE") }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -84,6 +83,13 @@
                                     </ul>
                                 </td>
                                 <td><textarea readonly>{{ vinculacion.descripcion }}</textarea></td>
+                                <td>
+                                    {% if vinculacion.id_acta %}
+                                        <button type="button" class="btn btn-lg btn-primary ver-acta" data-id="{{ vinculacion.id_acta }}"><i class="fa fa-file-contract"></i></button>
+                                    {% else %}
+                                        <i class="fa fa-times"></i>
+                                    {% endif %}
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -93,8 +99,7 @@
         </div>
     </div>
 
-    <div class="row">
-        <!-- Peticiones -->
+    <div class="row"> <!-- Peticiones -->
         <div class="col-sm-12">
             <div class="box box-info">
                 <div class="box-header with-border">
@@ -143,5 +148,7 @@
 
     <!-- Include page-specific JS -->
     {{ assets.js('js/pages/unlu') | raw }}
+
+    {{ assets.css('css/pages/unlu') | raw }}
 
 {% endblock %}

@@ -21,7 +21,8 @@ class Vinculacion extends Model {
         'actividad',
         'telefono',
         'correo',
-        'descripcion'
+        'descripcion',
+        'id_acta'
     ];
 
     public function tipo_usuario() {

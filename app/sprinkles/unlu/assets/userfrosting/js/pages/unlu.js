@@ -40,4 +40,10 @@ $(function() {
         });
     });
 
+    $(".ver-acta").click(function(e) {
+        e.preventDefault();
+
+        alert("TODO Acta N°: \"" + $(this).data("id") + "\"");
+    });
+
 });

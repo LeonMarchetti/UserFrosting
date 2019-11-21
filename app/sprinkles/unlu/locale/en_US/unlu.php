@@ -7,6 +7,7 @@ return [
             "@TRANSLATION" => "Activity",
             "MISSING" => "Activity is missing"
         ],
+        "CERTIFICATE" => "Certificate",
         "DEPENDENCY" => "Dependency",
         "DESCRIPTION" => [
             "@TRANSLATION" => "Description",
