@@ -15,6 +15,10 @@ use UserFrosting\Sprinkle\Unlu\Database\Models\TipoUsuario;
 use UserFrosting\Sprinkle\Unlu\Database\Models\UsuarioUnlu as Usuario;
 use UserFrosting\Sprinkle\Unlu\Database\Models\Vinculacion;
 
+use UserFrosting\Fortress\RequestDataTransformer;
+use UserFrosting\Fortress\RequestSchema;
+use Illuminate\Database\Capsule\Manager as Capsule;
+
 
 class UnluModalController extends SimpleController {
 
@@ -111,4 +115,87 @@ class UnluModalController extends SimpleController {
         ]);
     }
 
+    public function aprobarPeticionModal(Request $request, Response $response, $args) {
+
+        // GET parameters
+        $params = $request->getQueryParams();
+
+        $peticion = $this->getPeticionFromParams($params);
+        if (!$peticion) {
+            throw new NotFoundException();
+        }
+
+        /** @var UserFrosting\Sprinkle\Account\Authorize\AuthorizationManager */
+        $authorizer = $this->ci->authorizer;
+
+        /** @var UserFrosting\Sprinkle\Account\Database\Models\User $currentUser */
+        $currentUser = $this->ci->currentUser;
+
+        // Access-controlled page
+        // if (!$authorizer->checkAccess($currentUser, '')) {
+        //     throw new ForbiddenException();
+        // }
+
+        /** @var \UserFrosting\Support\Repository\Repository $config */
+        $config = $this->ci->config;
+
+        return $this->ci->view->render($response, 'modals/aprobar-peticion.html.twig', [
+            'peticion' => $peticion,
+            'form' => [
+                'action' => "api/unlu/p/{$peticion->id}",
+            ],
+        ]);
+    }
+
+    public function editarPeticionModal(Request $request, Response $response, $args) {
+
+        // GET parameters
+        $params = $request->getQueryParams();
+
+        $peticion = $this->getPeticionFromParams($params);
+        if (!$peticion) {
+            throw new NotFoundException();
+        }
+
+        /** @var UserFrosting\Sprinkle\Account\Authorize\AuthorizationManager */
+        $authorizer = $this->ci->authorizer;
+
+        /** @var UserFrosting\Sprinkle\Account\Database\Models\User $currentUser */
+        $currentUser = $this->ci->currentUser;
+
+        // Access-controlled page
+        // if (!$authorizer->checkAccess($currentUser, '')) {
+        //     throw new ForbiddenException();
+        // }
+
+        /** @var \UserFrosting\Support\Repository\Repository $config */
+        $config = $this->ci->config;
+
+        $servicios = Servicio::all();
+        $vinculaciones = Vinculacion::all();
+
+        return $this->ci->view->render($response, 'modals/editar-peticion.html.twig', [
+            "edicion" => true,
+            'peticion' => $peticion,
+            "servicios" => $servicios,
+            "vinculaciones" => $vinculaciones,
+            'form' => [
+                'action' => "api/unlu/p/{$peticion->id}",
+                "method" => "POST",
+                "submit_text" => "Actualizar"
+            ],
+        ]);
+    }
+
+    protected function getPeticionFromParams($params) {
+        $schema = new RequestSchema("schema://requests/unlu/peticion/get-by-id.yaml");
+
+        // Whitelist and set parameter defaults
+        $transformer = new RequestDataTransformer($schema);
+        $data = $transformer->transform($params);
+
+        $peticion = Peticion::find($data["id"]);
+
+        return $peticion;
+    }
 }

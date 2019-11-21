@@ -117,6 +117,7 @@
                                 <th>{{ translate("UNLU.PETITION.APPROVED") }}</th>
                                 <th>{{ translate("UNLU.PETITION.DESCRIPTION") }}</th>
                                 <th>{{ translate("UNLU.PETITION.OBSERVATIONS") }}</th>
+                                <th>{{ translate("ACTIONS") }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -130,6 +131,18 @@
                                 <td><input type="checkbox" {% if peticion.aprobada %}checked{% endif %} onclick="return false;"/></td>
                                 <td><textarea readonly>{{ peticion.descripcion }}</textarea></td>
                                 <td><textarea readonly>{{ peticion.observaciones }}</textarea></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="dropbtn btn btn-primary">Acciones</button>
+                                        <div class="dropdown-content">
+                                            <a href="#" class="aprobar-peticion" data-id="{{ peticion.id }}">
+                                                <i class="fas fa-plus-square"></i> Aprobar
+                                            </a>
+                                            <a href="#" class="editar-peticion" data-id="{{ peticion.id }}">
+                                                <i class="fas fa-pen-square"></i> Editar petición
+                                            </a>
+                                    </div>
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>

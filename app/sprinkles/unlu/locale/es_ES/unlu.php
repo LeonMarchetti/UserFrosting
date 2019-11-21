@@ -50,6 +50,7 @@ return [
                 "BEFORE" => "La fecha de inicio no puede ser anterior a hoy",
                 "MISSING" => "Falta la fecha de inicio"
             ],
+            "UPDATED" => "Petición actualizada",
             "VINCULATION" => "Vinculación",
         ],
         "PHONE" => [

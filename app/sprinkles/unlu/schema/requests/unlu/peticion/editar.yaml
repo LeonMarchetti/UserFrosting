@@ -1,0 +1,45 @@
+---
+fecha_inicio:
+    validators:
+        length:
+            label: FechaInicio
+            min: 1
+            max: 255
+            message: "Fecha inválida"
+fecha_fin:
+    validators:
+        length:
+            label: FechaFin
+            min: 1
+            max: 255
+            message: "Fecha inválida"
+id_servicio:
+    validators:
+        integer:
+            label: Servicio
+            message: "Servicio inválido"
+id_vinculacion:
+    validators:
+        integer:
+            label: Vinculacion
+            message: "Vinculación inválida"
+descripcion:
+    validators:
+        length:
+            label: Descripcion
+            min: 1
+            max: 255
+            message: VALIDATE.LENGTH_RANGE
+observaciones:
+    validators:
+        length:
+            label: Observaciones
+            min: 1
+            max: 255
+            message: VALIDATE.LENGTH_RANGE
+aprobada:
+    validators:
+        required:
+            label: "&ID"
+            message: VALIDATED.REQUIRED
+

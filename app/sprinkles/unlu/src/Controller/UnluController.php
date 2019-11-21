@@ -347,21 +347,83 @@ class UnluController extends SimpleController {
         return $response->withJson([], 200);
     }
 
-    protected function getPeticionFromParams($params) {
-        $schema = new RequestSchema("schema://requests/unlu/get-peticion.yaml");
+    public function editarPeticion(Request $request, Response $response, $args) {
+
+        $peticion = $this->getPeticionFromParams($args);
+        if (!$peticion) {
+            throw new NotFoundException();
+        }
+
+        /** @var \UserFrosting\Support\Repository\Repository $config */
+        $config = $this->ci->config;
+
+        // Get PUT parameters
+        $params = $request->getParsedBody();
+
+        /** @var \UserFrosting\Sprinkle\Core\Alert\AlertStream $ms */
+        $ms = $this->ci->alerts;
+
+        // Load the request schema
+        $schema = new RequestSchema('schema://requests/unlu/peticion/editar.yaml');
 
         // Whitelist and set parameter defaults
         $transformer = new RequestDataTransformer($schema);
         $data = $transformer->transform($params);
 
-        /** @var \UserFrosting\Sprinkle\Core\Util\ClassMapper $classMapper */
+        /** @var \UserFrosting\Sprinkle\Account\Authorize\AuthorizationManager $authorizer */
+        $authorizer = $this->ci->authorizer;
+
+        /** @var \UserFrosting\Sprinkle\Account\Database\Models\Interfaces\UserInterface $currentUser */
+        $currentUser = $this->ci->currentUser;
+
+        $error = false;
+
+        if (!isset($data["descripcion"]) || $data["descripcion"] === "") {
+            $ms->addMessageTranslated('warning', 'UNLU.PETITION.DESCRIPTION.MISSING', $data);
+            $error = true;
+        }
+
+        if ($error) {
+            return $response->withJson([], 400);
+        }
+
         $classMapper = $this->ci->classMapper;
 
-        // Get the user to delete
-        $peticion = $classMapper
-                    ->getClassMapping('peticion')
-                    ::where('id', $data['peticion'])
-                    ->first();
+        // Begin transaction - DB will be rolled back if an exception occurs
+        Capsule::transaction(function () use ($classMapper, $data, $peticion, $currentUser) {
+
+            if (isset($data["aprobada"])) {
+                $peticion->aprobada = $data["aprobada"];
+
+            } else {
+                $peticion->descripcion = $data["descripcion"];
+                $peticion->observaciones = $data["observaciones"];
+            }
+
+            $peticion->save();
+
+            // Create activity record
+            $this->ci->userActivityLogger->info("User {$currentUser->user_name} updated info for petition {$peticion->id}.", [
+                'type'    => 'account_update_info',
+                'user_id' => $currentUser->id,
+            ]);
+        });
+
+        $ms->addMessageTranslated('success', 'UNLU.PETITION.UPDATED', [
+            'user_name' => $peticion->id,
+        ]);
+
+        return $response->withJson([], 200);
+    }
+
+    protected function getPeticionFromParams($params) {
+        $schema = new RequestSchema("schema://requests/unlu/peticion/get-by-id.yaml");
+
+        // Whitelist and set parameter defaults
+        $transformer = new RequestDataTransformer($schema);
+        $data = $transformer->transform($params);
+
+        $peticion = Peticion::find($data["id"]);
 
         return $peticion;
     }

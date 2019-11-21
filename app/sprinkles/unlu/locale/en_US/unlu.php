@@ -50,6 +50,7 @@ return [
                 "BEFORE" => "Start date occurs before today",
                 "MISSING" => "Start date is missing"
             ],
+            "UPDATED" => "Petition updated",
             "VINCULATION" => "Vinculation",
         ],
         "PHONE" => [
