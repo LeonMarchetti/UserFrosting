@@ -5,3 +5,9 @@
 .controles_integrante select {
     width: 50% !important;
 }
+
+.agregar-integrante,
+.quitar-integrante {
+    width: 50% !important;
+    margin: auto;
+}

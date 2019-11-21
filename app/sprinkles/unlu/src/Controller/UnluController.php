@@ -27,7 +27,7 @@ class UnluController extends SimpleController {
         $currentUser = $this->ci->currentUser;
 
         // // Access-controlled page
-        // if (!$authorizer->checkAccess($currentUser, 'see_pastries')) {
+        // if (!$authorizer->checkAccess($currentUser, '')) {
         //     throw new ForbiddenException();
         // }
 
@@ -61,7 +61,7 @@ class UnluController extends SimpleController {
         $config = $this->ci->config;
 
         // Access-controlled page
-        // if (!$authorizer->checkAccess($currentUser, 'create_pastries')) {
+        // if (!$authorizer->checkAccess($currentUser, '')) {
         //     throw new ForbiddenException();
         // }
 
@@ -224,7 +224,7 @@ class UnluController extends SimpleController {
         $config = $this->ci->config;
 
         // Access-controlled page
-        // if (!$authorizer->checkAccess($currentUser, 'create_pastries')) {
+        // if (!$authorizer->checkAccess($currentUser, '')) {
         //     throw new ForbiddenException();
         // }
 
