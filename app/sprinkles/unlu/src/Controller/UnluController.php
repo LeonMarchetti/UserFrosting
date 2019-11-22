@@ -27,12 +27,12 @@ class UnluController extends SimpleController {
         $currentUser = $this->ci->currentUser;
 
         // // Access-controlled page
-        // if (!$authorizer->checkAccess($currentUser, '')) {
-        //     throw new ForbiddenException();
-        // }
+        if (!$authorizer->checkAccess($currentUser, 'usuario_unlu')) {
+            throw new ForbiddenException();
+        }
 
-        if ($currentUser->id == 1) {
-            // Usuario Root
+        if ($authorizer->checkAccess($currentUser, 'admin_unlu')) {
+            // Usuario administrador
             $vinculaciones = Vinculacion::all();
             $peticiones = Peticion::all();
 
@@ -61,9 +61,9 @@ class UnluController extends SimpleController {
         $config = $this->ci->config;
 
         // Access-controlled page
-        // if (!$authorizer->checkAccess($currentUser, '')) {
-        //     throw new ForbiddenException();
-        // }
+        if (!$authorizer->checkAccess($currentUser, 'usuario_unlu')) {
+            throw new ForbiddenException();
+        }
 
         /** @var \UserFrosting\Sprinkle\Core\Alert\AlertStream $ms */
         $ms = $this->ci->alerts;
@@ -224,9 +224,9 @@ class UnluController extends SimpleController {
         $config = $this->ci->config;
 
         // Access-controlled page
-        // if (!$authorizer->checkAccess($currentUser, '')) {
-        //     throw new ForbiddenException();
-        // }
+        if (!$authorizer->checkAccess($currentUser, 'usuario_unlu')) {
+            throw new ForbiddenException();
+        }
 
         /** @var \UserFrosting\Sprinkle\Core\Alert\AlertStream $ms */
         $ms = $this->ci->alerts;

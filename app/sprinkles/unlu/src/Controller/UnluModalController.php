@@ -31,9 +31,9 @@ class UnluModalController extends SimpleController {
         $currentUser = $this->ci->currentUser;
 
         // Access-controlled page
-        // if (!$authorizer->checkAccess($currentUser, '')) {
-        //     throw new ForbiddenException();
-        // }
+        if (!$authorizer->checkAccess($currentUser, 'usuario_unlu')) {
+            throw new ForbiddenException();
+        }
 
         // Valores por defecto de la vinculación que provienen de los datos del usuario actual.
         $vinculacion = [
@@ -73,9 +73,9 @@ class UnluModalController extends SimpleController {
         $currentUser = $this->ci->currentUser;
 
         // Access-controlled page
-        // if (!$authorizer->checkAccess($currentUser, '')) {
-        //     throw new ForbiddenException();
-        // }
+        if (!$authorizer->checkAccess($currentUser, 'usuario_unlu')) {
+            throw new ForbiddenException();
+        }
 
         $servicios = Servicio::all();
         $vinculaciones = Vinculacion::all();
@@ -99,9 +99,9 @@ class UnluModalController extends SimpleController {
         $currentUser = $this->ci->currentUser;
 
         // Access-controlled page
-        // if (!$authorizer->checkAccess($currentUser, '')) {
-        //     throw new ForbiddenException();
-        // }
+        if (!$authorizer->checkAccess($currentUser, 'admin_unlu')) {
+            throw new ForbiddenException();
+        }
 
         $peticiones = Peticion::where('id_usuario', $currentUser->id)->get();
 
@@ -132,9 +132,9 @@ class UnluModalController extends SimpleController {
         $currentUser = $this->ci->currentUser;
 
         // Access-controlled page
-        // if (!$authorizer->checkAccess($currentUser, '')) {
-        //     throw new ForbiddenException();
-        // }
+        if (!$authorizer->checkAccess($currentUser, 'admin_unlu')) {
+            throw new ForbiddenException();
+        }
 
         /** @var \UserFrosting\Support\Repository\Repository $config */
         $config = $this->ci->config;
@@ -164,9 +164,9 @@ class UnluModalController extends SimpleController {
         $currentUser = $this->ci->currentUser;
 
         // Access-controlled page
-        // if (!$authorizer->checkAccess($currentUser, '')) {
-        //     throw new ForbiddenException();
-        // }
+        if (!$authorizer->checkAccess($currentUser, 'usuario_unlu')) {
+            throw new ForbiddenException();
+        }
 
         /** @var \UserFrosting\Support\Repository\Repository $config */
         $config = $this->ci->config;

@@ -26,7 +26,7 @@
                 </div>
             </a>
         </div>
-        {% if checkAccess("view_system_info") %}
+        {% if checkAccess("admin_unlu") %}
         <div class="col-sm-4">
             <a href="#" class="baja-solicitud">
                 <div class="info-box">
@@ -135,9 +135,11 @@
                                     <div class="dropdown">
                                         <button class="dropbtn btn btn-primary">Acciones</button>
                                         <div class="dropdown-content">
+                                            {% if checkAccess("admin_unlu") %}
                                             <a href="#" class="aprobar-peticion" data-id="{{ peticion.id }}">
                                                 <i class="fas fa-plus-square"></i> Aprobar
                                             </a>
+                                            {% endif %}
                                             <a href="#" class="editar-peticion" data-id="{{ peticion.id }}">
                                                 <i class="fas fa-pen-square"></i> Editar petición
                                             </a>
