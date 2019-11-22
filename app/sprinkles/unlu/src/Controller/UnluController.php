@@ -277,6 +277,12 @@ class UnluController extends SimpleController {
             $error = true;
         }
 
+        // Borro la instancia de id_vinculacion si viene vacía del formulario (o sea, que la
+        // petición no está vinculada a ninguna vinculación):
+        if ($data["id_vinculacion"] === "") {
+            unset($data["id_vinculacion"]);
+        }
+
         if ($error) {
             return $response->withJson([], 400);
         }
