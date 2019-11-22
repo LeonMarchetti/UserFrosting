@@ -103,7 +103,7 @@ class UnluModalController extends SimpleController {
             throw new ForbiddenException();
         }
 
-        $peticiones = Peticion::where('id_usuario', $currentUser->id)->get();
+        $peticiones = Peticion::all();
 
         return $this->ci->view->render($response, 'modals/baja-solicitud.html.twig', [
             "peticiones" => $peticiones,

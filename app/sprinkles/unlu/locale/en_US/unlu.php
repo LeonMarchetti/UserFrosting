@@ -30,6 +30,7 @@ return [
             "@TRANSLATION" => "Petitions",
             "ADDED" => "The petition was requested succesfully",
             "APPROVED" => "Approved",
+            "DELETE_SUCCESSFUL" => "The petition was deleted successfully",
             "DESCRIPTION" => [
                 "@TRANSLATION" => "Description",
                 "MISSING" => "Description is missing"

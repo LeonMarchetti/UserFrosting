@@ -10,7 +10,7 @@
                     {% endfor %}
                 </ul> #}
                 <label>{{ translate("UNLU.PETITION") }}</label>
-                <select class="form-control js-select2" name="peticion" {{ page.visibility }}>
+                <select class="form-control js-select2" name="id" {{ page.visibility }}>
                     {% for peticion in peticiones %}
                     <option value="{{ peticion.id }}">{{ peticion.descripcion }}</option>
                     <option disabled>&uarr;{{ peticion.servicio.denominacion }}</option>
