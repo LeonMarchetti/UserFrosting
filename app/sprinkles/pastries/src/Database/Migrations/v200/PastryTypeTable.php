@@ -2,7 +2,7 @@
 
 namespace UserFrosting\Sprinkle\Pastries\Database\Migrations\v200;
 
-use UserFrosting\System\Bakery\Migration;
+use UserFrosting\Sprinkle\Core\Database\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use UserFrosting\Sprinkle\Core\Facades\Seeder;
 
